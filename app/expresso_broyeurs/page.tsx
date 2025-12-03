@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
 import { Product } from '@/types/product';
@@ -54,39 +52,16 @@ const contentBlocks = [
     },
 ];
 
-
-export default function ExpressoBroyeurs() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('/api/products');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data: Product[] = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-                setError("Failed to load products.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    if (loading) {
-        return <div className="text-center py-12">Chargement des produits...</div>;
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products?type=expresso-broyeur');
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
     }
+    return res.json();
+}
 
-    if (error) {
-        return <div className="text-center py-12 text-red-500">{error}</div>;
-    }
+export default async function ExpressoBroyeurs() {
+    const products = await getProducts();
     
     const listingProps = {
         products: products,

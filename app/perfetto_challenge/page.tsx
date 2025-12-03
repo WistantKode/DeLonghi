@@ -1,40 +1,37 @@
-'use client';
-
-import React, { useState } from 'react';
-import { IoIosArrowForward,IoIosAdd, IoIosClose } from 'react-icons/io'; 
+import React from 'react';
+import { IoIosArrowForward } from 'react-icons/io'; 
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
+import FAQItem from '@/components/shared/FAQItem'; // Import the new Client Component
 
-// Composant FAQItem 
-const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <div className="border-b border-gray-300 w-full">
-            <button 
-                className="flex justify-between items-center w-full py-4 text-left focus:outline-none"
-                onClick={() => setIsOpen(!isOpen)}>
-                <span className="text-lg font-normal text-gray-800">{question}</span>
-                {isOpen ? (
-                    <IoIosClose className="text-3xl text-gray-600 transition-transform duration-300" />
-                ) : (
-                    <IoIosAdd className="text-3xl text-gray-600 transition-transform duration-300" />
-                )}
-            </button>
-            {isOpen && (
-                <div className="pb-4 text-gray-600 transition-all duration-300">
-                    <p>{answer}</p>
-                </div>
-            )}
-        </div>
-    );
-};
-
-export default function PerfettoChallenge() {
+export default async function PerfettoChallenge() { // Made async for potential future server-side data fetching
 
     // const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
     // const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
+
+    const faqQuestions = [
+        {
+            question: "Comment la Technologie Bean Adapt fonctionne-t-elle sur ma Eletta Explore ?",
+            answer: "La technologie Bean Adapt vous permet de personnaliser les réglages de mouture, la dose de café et la température d'infusion en fonction du type de grain que vous utilisez, afin d'assurer l'extraction parfaite des arômes de votre café."
+        },
+        {
+            question: "Eletta Explore : qu'est-ce que la Technologie Cold Extraction ?",
+            answer: "La Technologie Cold Extraction est un processus innovant qui utilise une basse pression et une température d'eau ambiante pour préparer un Cold Brew authentique en moins de 5 minutes, révélant les notes sucrées et florales des grains de café."
+        },
+        {
+            question: "Combien de temps faut-il pour préparer une boisson Cold Brew avec Eletta Explore ?",
+            answer: "Grâce à la technologie Cold Extraction, vous pouvez préparer une boisson Cold Brew Perfetto en moins de 5 minutes."
+        },
+        {
+            question: "Quelle est la différence entre extraction à froid (Cold Brew) et café glacé (Iced Coffee) ?",
+            answer: "L'extraction à froid (Cold Brew) est préparée à l'aide d'eau froide ou ambiante sur une longue période (ici accélérée par la technologie de la machine) pour obtenir un goût doux et naturellement sucré. Le café glacé (Iced Coffee) est généralement un espresso ou un café chaud versé sur de la glace, ce qui peut donner un goût plus amer ou dilué."
+        },
+        {
+            question: "Où puis-je trouver des recettes créatives pour préparer des boissons Cold Brew ?",
+            answer: "Vous pouvez trouver des recettes créatives et personnalisées directement sur l'écran intuitif de l'Eletta Explore, ou via l'application associée (si disponible)."
+        },
+    ];
 
 
     return (
@@ -130,6 +127,24 @@ export default function PerfettoChallenge() {
                 <p className="text-sm text-gray-500">
                     Chaque joueur n’a droit qu’à une seule récompense, qui peut aller de 10 à 30 % de remise, utilisable pour une seule commande. Il est permis aux joueurs de participer plusieurs fois (jusqu’à 10 tentatives), mais leur récompense ne changera pas.
                 </p>
+            </section>
+
+            {/* FAQ Section */}
+            <section className="bg-gray-100 py-12 md:py-20 mt-10 px-4 md:px-8">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-10 uppercase text-[#0A2342]">
+                        FAQ
+                    </h2>
+                    <div className="w-full px-4 md:px-8 py-2">
+                        {faqQuestions.map((item, index) => (
+                            <FAQItem 
+                                key={index} 
+                                question={item.question} 
+                                answer={item.answer} 
+                            />
+                        ))}
+                    </div>
+                </div>
             </section>
 
         </div>

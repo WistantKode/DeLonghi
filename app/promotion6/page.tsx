@@ -1,236 +1,27 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProductSection from '@/components/ProductSection'; 
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Product } from '@/types/product';
 
-const initialProducts: Product[] = [
-    { 
-        id: 1, 
-        name: "Rivelia Jade Green | Couleur exclusive", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "EXCLUSIVITÉ WEB", 
-        image: "/product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Technologie Cold Brew intégrée",
-            "Double système de préparation",
-            "Ecran tactile intuitif",
-            "Nettoyage automatique"
-        ]
-    },
-    { 
-        id: 2, 
-        name: "Rivelia - Sand Beige", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "/product/machine.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Connectivité Wi-Fi",
-            "Contrôle via application",
-            "13 recettes personnalisables",
-            "Broyeur céramique"
-        ]
-    },
-    { 
-        id: 3, 
-        name: "Rivelia Onyx Black", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "/product/machine2.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Design compact",
-            "Système LatteCrema",
-            "Chauffe-tasses intégré",
-            "Rinçage automatique"
-        ]
-    },
-    { 
-        id: 4, 
-        name: "Rivelia Arctic White", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Double brûleur",
-            "Réservoir lait intégré",
-            "Ecran couleur HD",
-            "Recettes barista"
-        ]
-    },
-    { 
-        id: 5, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-    { 
-        id: 6, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-    { 
-        id: 7, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-    { 
-        id: 8, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-    { 
-        id: 9, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-    { 
-        id: 10, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-];
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products?type=cafe'); // Filter by type=cafe
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
+    }
+    return res.json();
+}
 
-export default function Promotion6() {
-
+export default async function Promotion6() {
+    const products = await getProducts();
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('/api/products');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data: Product[] = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-                setError("Failed to load products.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    if (loading) {
-        return <div className="text-center py-12">Chargement des produits...</div>;
-    }
-
-    if (error) {
-        return <div className="text-center py-12 text-red-500">{error}</div>;
-    }
-    
       
     const listingProps = {
         products: products,
         defaultListingTitle: "Sortie", 
-        title : null,
-        subtitle: null,
+        title : null, // Kept null as per original code
+        subtitle: null, // Kept null as per original code
         filterOptions: ['Trier par', 'Prix', 'Promotion', 'Couleur', 'Série', 'Catégorie'],
         backgroundImage: null, 
         productsPerPage: 10,
@@ -249,7 +40,6 @@ export default function Promotion6() {
             />
 
             <div className="font-sans antialiased">
-                {/* ProductSection est censé gérer son propre responsive, nous le laissons tel quel */}
                 <ProductSection {...listingProps} />
             </div>
 

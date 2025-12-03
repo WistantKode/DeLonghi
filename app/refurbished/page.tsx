@@ -1,63 +1,17 @@
-'use client';
-
 import React from 'react';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
-
-interface ProductData {
-    name: string;
-    series: string;
-    price: string | null;
-    originalPrice: string | null;
-    link: string;
-    imageUrl: string;
-}
-
-const productData: ProductData[] = [
-    {
-        name: "23 Series",
-        series: "ECAM23.466.S",
-        price: null, 
-        originalPrice: null,
-        link: "#23-series-large",
-        imageUrl: "/cafe/23series1.avif", 
-    },
-    {
-        name: "23 Series",
-        series: "ECAM23.460.B",
-        price: null, 
-        originalPrice: null,
-        link: "#23-series-medium",
-        imageUrl: "/cafe/23series2.avif", 
-    },
-    {
-        name: "Magnifica S Smart",
-        series: "ECAM23.260.B",
-        price: "419,90 €",
-        originalPrice: "499,90 €",
-        link: "#magnifica-s-smart",
-        imageUrl: "/cafe/magnifica.avif", 
-    },
-    {
-        name: "Dinamica Plus",
-        series: "ECAM370.70.BB",
-        price: null, 
-        originalPrice: null,
-        link: "#dinamica-plus",
-        imageUrl: "/cafe/dynamica.avif", 
-    },
-];
+import { Product } from '@/types/product'; // Import Product interface
 
 interface ProductCardProps {
-    product: ProductData;
+    product: Product; // Now accepts a Product object
     isLarge?: boolean;
     hidePadding?: boolean;
     isHorizontal?: boolean;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, isLarge = false, hidePadding = false, isHorizontal = false }) => {
-    // Les classes ici sont déjà bien gérées dans la logique interne du composant ProductCard
     const heightClass = isLarge ? 'h-full' : 'h-44 sm:h-52';
     const textClass = isLarge ? 'text-xl mt-4' : 'text-lg mt-2';
     const paddingClass = hidePadding ? 'p-0' : 'p-4';
@@ -75,10 +29,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLarge = false, hid
     const priceDisplay = isHorizontal ? 'sm:mt-auto' : 'mt-2';
     
     return (
-        <Link href={product.link} className={`group block ${cardBgColor} overflow-hidden transition duration-300 ease-in-out h-full ${cardDirection}`}>
+        <Link href={product.link || '#'} className={`group block ${cardBgColor} overflow-hidden transition duration-300 ease-in-out h-full ${cardDirection}`}>
             <div className={imageContainerClasses}>
                 <Image
-                    src={product.imageUrl}
+                    src={product.image}
                     alt={product.name}
                     width={isLarge ? 500 : 300}
                     height={isLarge ? 500 : 300}
@@ -93,20 +47,32 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLarge = false, hid
                 {product.price && (
                     <div className={`${priceDisplay}`}>
                         <p className="text-xl mt-2">{product.price}</p>
-                        <p className="text-xs text-gray-500 mt-1">{product.price} Prix le plus bas 30 derniers jours</p>
+                        {/* Assuming product.oldPrice is the "Prix le plus bas 30 derniers jours" for refurbished */}
+                        {product.oldPrice && <p className="text-xs text-gray-500 mt-1">{product.oldPrice} Prix le plus bas 30 derniers jours</p>}
                     </div>
                 )}
-
-                
             </div>
         </Link>
     );
 };
 
-export default function Refurbished() {
+async function getRefurbishedProducts(): Promise<Product[]> {
+    // Assuming "reconditionné" is a status or a specific type for refurbished products
+    // For now, we'll fetch all and filter by status if available, or just use a subset.
+    const res = await fetch('http://localhost:3000/api/products'); // Fetch all products
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
+    }
+    const allProducts: Product[] = await res.json();
+    // Filter for products that might be considered "refurbished" based on status or other criteria
+    // This is a placeholder logic, adjust based on actual data structure for refurbished items
+    return allProducts.filter(p => p.status === "RECONDITIONNÉ" || p.name.includes("Reconditionné"));
+}
+
+export default async function Refurbished() {
+    const refurbishedProducts = await getRefurbishedProducts();
 
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
-    // const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
     const coffeeMachineStyle = {
         backgroundImage: 'url("/bg1.jpg")', 
         backgroundSize: 'cover',
@@ -114,11 +80,16 @@ export default function Refurbished() {
     };
     const btn = 'w-120'
 
-    const largeProduct = productData[0];
-    const mediumProduct = productData[1];
-    const smallProduct1 = productData[2];
-    const smallProduct2 = productData[3];
+    // Map fetched products to the specific layout of this page
+    // This part needs careful mapping based on what products are actually "large", "medium", "small"
+    const largeProduct = refurbishedProducts.find(p => p.series === "ECAM23.466.S") || refurbishedProducts[0];
+    const mediumProduct = refurbishedProducts.find(p => p.series === "ECAM23.460.B") || refurbishedProducts[1];
+    const smallProduct1 = refurbishedProducts.find(p => p.series === "ECAM23.260.B") || refurbishedProducts[2];
+    const smallProduct2 = refurbishedProducts.find(p => p.series === "ECAM370.70.BB") || refurbishedProducts[3];
     
+    // Fallback if not enough products or specific series not found
+    const displayProducts = [largeProduct, mediumProduct, smallProduct1, smallProduct2].filter(Boolean) as Product[];
+
 
     return (
         <div className="w-full overflow-x-hidden font-sans antialiased">
@@ -217,7 +188,7 @@ export default function Refurbished() {
                     
                     {/* Colonne 1 : La Grande Carte */}
                     <div className="lg:col-span-1 h-auto min-h-[500px] lg:min-h-[700px]">
-                        <ProductCard product={largeProduct} isLarge={true} />
+                        {displayProducts[0] && <ProductCard product={displayProducts[0]} isLarge={true} />}
                     </div>
 
                     {/* Colonne 2 : La Grille 1x2 + 2x1 */}
@@ -225,17 +196,17 @@ export default function Refurbished() {
                         
                         {/* Carte Horizontale */}
                         <div className="row-span-1 h-auto min-h-[250px] lg:min-h-0"> 
-                            <ProductCard product={mediumProduct} isHorizontal={true} />
+                            {displayProducts[1] && <ProductCard product={displayProducts[1]} isHorizontal={true} />}
                         </div>
 
                         {/* 2 Petites Cartes (alignées horizontalement sur mobile aussi) */}
                         <div className="row-span-1 flex flex-col sm:flex-row gap-4 h-auto min-h-[250px] lg:min-h-0">
                             <div className="flex-1 h-full min-h-[250px] sm:min-h-0">
-                                <ProductCard product={smallProduct1} />
+                                {displayProducts[2] && <ProductCard product={displayProducts[2]} />}
                             </div>
                             
                             <div className="flex-1 h-full min-h-[250px] sm:min-h-0">
-                                <ProductCard product={smallProduct2} />
+                                {displayProducts[3] && <ProductCard product={displayProducts[3]} />}
                             </div>
                         </div>
                     </div>

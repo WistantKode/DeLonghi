@@ -1,11 +1,11 @@
-'use client';
-
+'use client'
 import React, { useState } from 'react';
 import YouTube from 'react-youtube'; 
 import { FaPlayCircle, FaRegCopy, FaYoutube} from "react-icons/fa";
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Product } from '@/types/product'; // Import Product interface
 
 // Fonction de simulation pour copier le lien
 const handleCopyLink = (url: string) => {
@@ -31,27 +31,24 @@ const handleCopyLink = (url: string) => {
 };
 
 interface MachineCardProps {
-    img: string;
-    title: string;
-    description: string;
+    product: Product; // Now accepts a Product object
     ctaText: string;
-    buttonClass?: string;
 }
 
-const MachineCard: React.FC<MachineCardProps> = ({ img, title, description, ctaText }) => {
+const MachineCard: React.FC<MachineCardProps> = ({ product, ctaText }) => {
     return (
         <div className="flex flex-col items-center p-4 h-full">
             <div className="mb-4 w-full max-w-[200px] sm:max-w-[250px] mx-auto">
-                <Image src={img} alt={`Machine à café ${title}`} width={250} height={250} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
+                <Image src={product.image} alt={`Machine à café ${product.name}`} width={250} height={250} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             
             <div className="flex flex-col flex-grow items-center gap-4 w-full">
                 <h3 className="font-bold text-xl text-[#0A2342] min-h-[30px] flex items-center justify-center text-center">
-                    {title}
+                    {product.name}
                 </h3>
                 
                 <p className="text-center text-sm text-gray-600 flex-grow mb-4">
-                    {description}
+                    {product.subtitle || (product.features ? product.features.join('. ') : '')} {/* Use subtitle or concatenated features for description */}
                 </p>
                 
                 <button className="w-full max-w-[240px] py-2 flex justify-center items-center text-white rounded-full cursor-pointer transition duration-300 shadow-md hover:shadow-lg bg-[#0A2342] hover:bg-white hover:text-[#0A2342]">
@@ -62,44 +59,41 @@ const MachineCard: React.FC<MachineCardProps> = ({ img, title, description, ctaT
     );
 };
 
-export default function DecouvrirCafe1() {
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products'); // Fetch all products for now
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
+    }
+    return res.json();
+}
+
+export default async function DecouvrirCafe1() {
+
+    const allProducts = await getProducts();
 
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
     const youtubeUrl = "https://youtu.be/Hb6H3Ms70PU"; 
     const videoId = "Hb6H3Ms70PU"; 
     const youtubeChannelUrl = "https://www.youtube.com/@delonghifrance"; 
     
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false); // Keep useState for video player
 
     const getThumbnailUrl = (id: string) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
     const videoCoverImage = getThumbnailUrl(videoId);
 
-    const machines = [
-        {
-            img: "/cafe/decouvrir_cafe1.avif",
-            title: "Rivelia",
-            description: "Tournez, changez, dégustez ! Découvrez tout un monde de saveurs à chaque tasse.",
-            ctaText: "Découvrez le vôtre",
-        },
-        {
-            img: "/cafe/decouvrir_cafe1_2.avif",
-            title: "Eletta Explore",
-            description: "Une variété infinie, en toute simplicité. De l'expresso au latte en passant par le cold brew, le tout préparé exactement comme vous l'aimez !",
-            ctaText: "Découvrez-en plus",
-        },
-        {
-            img: "/cafe/decouvrir_cafe1_3.avif",
-            title: "PrimaDonna Aromatic",
-            description: "Le parfum de votre moment Perfetto. Laissez-vous tenter par des boissons lactées soyeuses et onctueuses, en toute simplicité.",
-            ctaText: "Savourez-les dès maintenant",
-        },
-        {
-            img: "/cafe/decouvrir_cafe1_4.avif",
-            title: "La Specialista Touch",
-            description: "Ensemble, créons votre café Perfetto. Une précision et un contrôle absolus pour une tasse sur mesure.",
-            ctaText: "Créez la vôtre",
-        },
+    // Manually map fetched products to the structure needed for MachineCard
+    const featuredMachinesData = [
+        { series: "Rivelia", ctaText: "Découvrez le vôtre" },
+        { series: "Eletta Explore", ctaText: "Découvrez-en plus" },
+        { series: "PrimaDonna Aromatic", ctaText: "Savourez-les dès maintenant" },
+        { series: "La Specialista Touch", ctaText: "Créez la vôtre" },
     ];
+
+    const featuredMachines = featuredMachinesData.map(item => {
+        const product = allProducts.find(p => p.series === item.series);
+        return product ? { product, ctaText: item.ctaText } : null;
+    }).filter(Boolean) as { product: Product; ctaText: string }[];
+
 
      const playerOpts = {
         width: '100%',
@@ -153,13 +147,11 @@ export default function DecouvrirCafe1() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Grille responsive : 1 col mobile, 2 col tablette, 4 col desktop */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-                        {machines.map((machine) => (
+                        {featuredMachines.map((item, index) => (
                             <MachineCard 
-                                key={machine.title}
-                                img={machine.img}
-                                title={machine.title}
-                                description={machine.description}
-                                ctaText={machine.ctaText}
+                                key={index} // Using index as key, ideally product.id should be used
+                                product={item.product}
+                                ctaText={item.ctaText}
                             />
                         ))}
                     </div>

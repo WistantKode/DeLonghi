@@ -4,13 +4,23 @@ import ProductCarousel from '@/components/ProductCarousel';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { Product } from '@/types/product';
 
 export const metadata: Metadata = {
   title: "De'Longhi France | Machines à café, Expresso broyeurs, Appareils",
   description: "Découvrez les machines à café De'Longhi : expresso broyeurs, machines expresso, climatiseurs et plus. Offres exclusives jusqu'à -30%. Livraison gratuite dès 39€.",
 };
 
-export default function Home() {
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products');
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
+    }
+    return res.json();
+}
+
+export default async function Home() {
+    const products = await getProducts();
 
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
     const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
@@ -37,7 +47,7 @@ export default function Home() {
             
             <section className="py-12 max-w-7xl mx-auto px-4 text-center">
                 <h2 className="text-2xl md:text-3xl font-bold mb-6">Quels produits recherchez-vous?</h2>
-                <ProductCarousel /> 
+                <ProductCarousel products={products} /> 
             </section>
 
             <Hero 

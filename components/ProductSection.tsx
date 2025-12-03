@@ -77,7 +77,7 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
             {/* Détails du produit */}
             <div className="p-6 pt-4">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                    {product.category}
+                    {product.series} {/* Changed from product.category to product.series */}
                 </p>
 
                 <div className="flex justify-between items-start">
@@ -145,9 +145,11 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
                                     Commander
                                 </button>   
                             </Link>
-                            <button className="w-full py-3 px-4 text-center cursor-pointer rounded-full border border-[#0A2342] font-bold text-sm text-[#0A2342] hover:bg-[#0A2342] hover:text-white transition-colors">
-                                En découvrir plus
-                            </button>
+                            <Link href={`/${product.type}/${product.id}`}> {/* Link to product detail page using type and id */}
+                                <button className="w-full py-3 px-4 text-center cursor-pointer rounded-full border border-[#0A2342] font-bold text-sm text-[#0A2342] hover:bg-[#0A2342] hover:text-white transition-colors">
+                                    En découvrir plus
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 ) : (

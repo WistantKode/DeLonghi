@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
 import { Product } from '@/types/product';
@@ -43,100 +41,6 @@ const ContentBlock = ({ title, content, imageUrl, imageAlt }: ContentBlockProps)
     );
 };
 
-
-const initialProducts: Product[] = [
-    { 
-        id: 1, 
-        name: "Rivelia Jade Green | Couleur exclusive", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "EXCLUSIVITÉ WEB", 
-        image: "/product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Technologie Cold Brew intégrée",
-            "Double système de préparation",
-            "Ecran tactile intuitif",
-            "Nettoyage automatique"
-        ]
-    },
-    { 
-        id: 2, 
-        name: "Rivelia - Sand Beige", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "/product/machine.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Connectivité Wi-Fi",
-            "Contrôle via application",
-            "13 recettes personnalisables",
-            "Broyeur céramique"
-        ]
-    },
-    { 
-        id: 3, 
-        name: "Rivelia Onyx Black", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "/product/machine2.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Design compact",
-            "Système LatteCrema",
-            "Chauffe-tasses intégré",
-            "Rinçage automatique"
-        ]
-    },
-    { 
-        id: 4, 
-        name: "Rivelia Arctic White", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Double brûleur",
-            "Réservoir lait intégré",
-            "Ecran couleur HD",
-            "Recettes barista"
-        ]
-    },
-    { 
-        id: 5, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-];
-
 const contentBlocks = [
     {
         title: "Comment fonctionne une machine à café percolateur?",
@@ -148,39 +52,16 @@ const contentBlocks = [
     },
 ];
 
-
-export default function MachinesExpresso() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('/api/products');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data: Product[] = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-                setError("Failed to load products.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    if (loading) {
-        return <div className="text-center py-12">Chargement des produits...</div>;
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products?type=machine-expresso-manuelle');
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
     }
+    return res.json();
+}
 
-    if (error) {
-        return <div className="text-center py-12 text-red-500">{error}</div>;
-    }
+export default async function MachinesExpresso() {
+    const products = await getProducts();
     
     const listingProps = {
         products: products,

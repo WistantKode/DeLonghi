@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
 import { Product } from '@/types/product';
@@ -48,100 +46,6 @@ const ContentBlock = ({ title, content, imageUrl, imageAlt }: ContentBlockProps)
         </div>
     );
 };
-
-
-const initialProducts: Product[] = [
-    { 
-        id: 1, 
-        name: "Dedica Duo", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 746, 
-        status: "EXCLUSIVITÉ WEB", 
-        image: "/product/machine1.avif",
-        category: "Dedica Duo",
-        colors: 5,
-        features: [
-            "Technologie Cold Brew intégrée",
-            "Double système de préparation",
-            "Ecran tactile intuitif",
-            "Nettoyage automatique"
-        ]
-    },
-    { 
-        id: 2, 
-        name: "Magnifica Smart", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 746, 
-        status: "En rupture de stock", 
-        image: "/product/machine.avif",
-        category: "Magnifica Smart",
-        colors: 5,
-        features: [
-            "Connectivité Wi-Fi",
-            "Contrôle via application",
-            "13 recettes personnalisables",
-            "Broyeur céramique"
-        ]
-    },
-    { 
-        id: 3, 
-        name: "Magnifica Evo", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 746, 
-        status: "En rupture de stock", 
-        image: "/product/machine2.avif",
-        category: "Magnifica Evo",
-        colors: 5,
-        features: [
-            "Design compact",
-            "Système LatteCrema",
-            "Chauffe-tasses intégré",
-            "Rinçage automatique"
-        ]
-    },
-    { 
-        id: 4, 
-        name: "Eleta Explore", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 746, 
-        status: "PROMO", 
-        image: "/product/machine1.avif",
-        category: "Eleta Explore",
-        colors: 5,
-        features: [
-            "Double brûleur",
-            "Réservoir lait intégré",
-            "Ecran couleur HD",
-            "Recettes barista"
-        ]
-    },
-    { 
-        id: 5, 
-        name: "Magnifica Plus", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 746, 
-        status: "PROMO", 
-        image: "/cafe/cafe_machine.jpg",
-        category: "Magnifica Plus",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-];
 
 const contentBlocks = [
     {
@@ -196,39 +100,16 @@ const contentBlocks = [
     },
 ];
 
-
-export default function Cafe() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-
-    useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const response = await fetch('/api/products');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data: Product[] = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error("Failed to fetch products:", error);
-                setError("Failed to load products.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, []);
-
-    if (loading) {
-        return <div className="text-center py-12">Chargement des produits...</div>;
+async function getProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products?type=cafe');
+    if (!res.ok) {
+        throw new Error('Failed to fetch products');
     }
+    return res.json();
+}
 
-    if (error) {
-        return <div className="text-center py-12 text-red-500">{error}</div>;
-    }
+export default async function Cafe() {
+    const products = await getProducts();
     
     const listingProps = {
         products: products,

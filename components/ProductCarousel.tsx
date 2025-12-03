@@ -4,23 +4,13 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link'; 
+import { Product } from '@/types/product'; // Import the Product interface from types
 
-interface Product {
-    name: string;
-    category: string;
-    imageUrl: string;
-    link: string;
+interface ProductCarouselProps {
+    products: Product[]; // Now accepts products as a prop
 }
 
-const products: Product[] = [
-    { name: "Machines à Café", category: "Machines à Café", imageUrl: "/product/machine.avif", link: "/cafe" },
-    { name: "Machines à Café à Grain", category: "Expresso broyeurs", imageUrl: "/product/machine1.avif", link: "/expresso_broyeurs" },
-    { name: "Machines Expresso Manuelles", category: "Machines expresso", imageUrl: "/product/machine2.avif", link: "/machines_expresso" },
-    { name: "Climatiseurs mobiles", category: "Climatiseurs Mobiles", imageUrl: "/product/machine3.avif", link: "/appareils_confort" },
-    { name: "Déshumidificateur d'air", category: "Déshumidificateur", imageUrl: "/product/machine4.avif", link: "/deshumi" },
-];
-
-const ProductCarousel: React.FC = () => {
+const ProductCarousel: React.FC<ProductCarouselProps> = ({ products }) => {
     
     const scrollRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(0);
@@ -60,7 +50,7 @@ const ProductCarousel: React.FC = () => {
         <div className="flex flex-col items-center p-4 min-w-[280px] max-w-[300px] mx-4 transition-transform duration-300">
             <div className="h-64 flex items-center justify-center bg-transparent">
                 <Image 
-                    src={product.imageUrl} 
+                    src={product.image} // Use product.image directly
                     alt={product.name} 
                     width={256}
                     height={256}
@@ -71,9 +61,9 @@ const ProductCarousel: React.FC = () => {
             <p className="text-gray-500 text-sm mt-4">{product.name}</p>
 
             <Link 
-                href={product.link}
+                href={`/${product.type}`} // Use product.type for the link
                 className="mt-4 py-2 w-52 px-6 text-white font-semibold rounded-full transition duration-300 bg-[#0A2342] hover:bg-white hover:text-[#0A2342] border border-2-[#0A2342] cursor-pointer text-center" >
-                {product.category}
+                {product.series} {/* Use product.series for the category display */}
             </Link>
         </div>
     );

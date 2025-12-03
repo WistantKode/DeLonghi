@@ -1,112 +1,35 @@
-'use client';
-
-import React, { useState } from 'react';
-import YouTube from 'react-youtube'; 
-import { FaPlayCircle, FaRegCopy,FaYoutube} from "react-icons/fa";
+import React from 'react';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Product } from '@/types/product'; // Import Product interface
+import InteractiveYoutubePlayer from '@/components/shared/InteractiveYoutubePlayer'; // Import the new Client Component
 
-// Fonction de simulation pour copier le lien
-const handleCopyLink = (url: string) => {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(url)
-            .then(() => alert('Lien YouTube copié !'))
-            .catch(() => {
-                const textarea = document.createElement('textarea');
-                textarea.value = url;
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    alert('Lien YouTube copié ! (via fallback)');
-                } catch (err) {
-                    console.error('Erreur lors de la copie (fallback):', err);
-                }
-                document.body.removeChild(textarea);
-            });
-    } else {
-         alert(`Veuillez copier manuellement ce lien : ${url}`);
+async function getPrimaDonnaAromaticProducts(): Promise<Product[]> {
+    const res = await fetch('http://localhost:3000/api/products?series=PrimaDonna Aromatic');
+    if (!res.ok) {
+        throw new Error('Failed to fetch PrimaDonna Aromatic products');
     }
-};
+    return res.json();
+}
 
-export default function DecouvrirCafe5() {
+export default async function DecouvrirCafe5() {
+    const models = await getPrimaDonnaAromaticProducts();
 
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
-    // const white ButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
-   
     const youtubeUrl = "https://youtu.be/PA2WdgvXVdo"; 
-    // const youtubeUrl = "https://youtu.be/Hb6H3Ms70PU?si=vSLwbqQh5vlIx2nQ";
-     const videoId = "PA2WdgvXVdo"; 
-     const youtubeChannelUrl = "https://www.youtube.com/@delonghifrance"; 
-     
-     // État pour contrôler l'affichage de la vidéo
-     const [isPlaying, setIsPlaying] = useState(false);
- 
-     const getThumbnailUrl = (id: string) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
-     const videoCoverImage = getThumbnailUrl(videoId);
-
-    const models = [
-        {
-            id: 1,
-            title: "PrimaDonna Aromatic",
-            subtitle: "Une élégance intemporelle avec son design en métal brossé argenté",
-            features: [
-                "Technologie LatteCrema Hot",
-                "Technologie Cold Extraction", 
-                "Technologie Bean Adapt",
-                "30 délicieux cafés chauds et froids d'une simple touche"
-            ],
-            image: "/cafe/decouvrir_cafe1_2.avif",
-            buttonText: "Achetez maintenant"
-        },
-        {
-            id: 2,
-            title: "PrimaDonna Aromatic", 
-            subtitle: "Une élégance intemporelle avec son design en métal brossé en titane",
-            features: [
-                "LatteCrema Hot & Cool Technologies",
-                "Technologie Cold Extraction",
-                "Technologie Bean Adapt", 
-                "Plus de 35 délicieux cafés chauds et froids d'une simple touche"
-            ],
-            image: "/cafe/decouvrir_cafe1_3.avif",
-            buttonText: "Achetez maintenant"
-        },
-        {
-            id: 3,
-            title: "PrimaDonna Aromatic",
-            subtitle: "Une élégance intemporelle avec son design en métal brillant en titane",
-            features: [
-                "Technologies LatteCrema Hot & Cool",
-                "Technologie Cold Extraction",
-                "Technologie Bean Adapt",
-                "Plus de 35 délicieux cafés chauds et froids d'une simple touche"
-            ],
-            image: "/cafe/decouvrir_cafe1_3.avif", 
-            buttonText: "Achetez maintenant"
-        }
-    ];
-
-    const playerOpts = {
-        width: '100%',
-        height: '100%',
-        playerVars: {
-            // Activer la lecture automatique
-            autoplay: 1, 
-            // Cacher les contrôles utilisateur
-            controls: 1, 
-            // Cacher les vidéos suggérées à la fin
-            rel: 0, 
-        },
-    };
-
+    const videoId = "PA2WdgvXVdo"; 
+    const youtubeChannelUrl = "https://www.youtube.com/@delonghifrance"; 
+    
     return (
         <div className="w-full">
 
             <div className="bg-white w-full hidden lg:flex justify-between z-10 mt-48 -mb-10 pl-30 pr-30 items-center">
                 <div className="flex items-center">
-                    <Image className="w-20" src="/cafe/decouvrir_cafe1_3.avif" alt="" width={80} height={80} />
+                    {/* Assuming the first model's image is representative */}
+                    {models.length > 0 && (
+                        <Image className="w-20" src={models[0].image} alt={models[0].name} width={80} height={80} />
+                    )}
                     <span className="font-bold text-xl pl-8">Laissez-vous tenter par la PrimaDonna Aromatic</span>
                 </div>
 
@@ -173,79 +96,11 @@ export default function DecouvrirCafe5() {
 
             </section>
 
-            <section className="w-full relative bg-black aspect-video flex justify-center items-center overflow-hidden"> 
-                
-                {isPlaying ? (
-                    <div className="w-full h-full absolute inset-0">
-                        <YouTube 
-                            videoId={videoId} 
-                            opts={playerOpts} 
-                            className="w-full h-full"
-                            onEnd={() => setIsPlaying(false)} 
-                        />
-                    </div>
-
-                ) : (
-                    <div 
-                        className="w-full h-full absolute inset-0 bg-cover bg-center transition-opacity duration-300 hover:opacity-90 cursor-pointer"
-                        style={{ 
-                            backgroundImage: `url(${videoCoverImage})`,
-                            backgroundColor: '#e7e7e7' 
-                        }}
-
-                        onClick={() => setIsPlaying(true)}
-                    >
-                       
-                        <div className="absolute inset-0 flex flex-col justify-between p-6 sm:p-12 text-white bg-black bg-opacity-50">
-                            
-                            <div className="flex justify-between items-start w-full">
-                                
-                                <div className="flex flex-col gap-1">
-                                    <div className="flex items-center text-xs sm:text-sm">
-                                        <Link 
-                                            href={youtubeChannelUrl} 
-                                            target="_blank" 
-                                            rel="noopener noreferrer" 
-                                            className="flex items-center hover:text-gray-300 transition-colors mr-3"
-                                        >
-                                            <FaYoutube className="w-4 h-4 mr-1" />
-                                            <span className="font-bold">PrimaDonna Aromatic | Automatic Bean Adapt Technology</span>
-                                        </Link>
-                                    </div>
-
-                                   
-                                </div>
-                                
-                                <div 
-                                    className="flex flex-col items-center justify-center cursor-pointer group p-2" 
-                                    onClick={(e) => {
-                                        e.stopPropagation(); 
-                                        handleCopyLink(youtubeUrl);}}>
-                                    <FaRegCopy className="w-6 h-6 text-white group-hover:text-gray-400 transition-colors" />
-                                    <span className="text-xs mt-1">Copier le lien</span>
-                                </div>
-                            </div>
-
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <FaPlayCircle className="w-16 h-16 sm:w-20 sm:h-20 text-white transition duration-300 hover:scale-110" />
-                            </div>
-
-                            <div className="self-start text-xs sm:text-sm">
-                                <Link 
-                                    href={youtubeUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
-                                    className="flex items-center bg-black bg-opacity-70 gap-2 rounded hover:underline"
-                                >
-                                    <FaPlayCircle className="w-4 h-4 rounded" /> Regarder sur YouTube
-                                </Link>
-                            </div>
-
-                        </div>
-                    </div>
-                )}
-            </section>
-
+            <InteractiveYoutubePlayer
+                videoId={videoId}
+                youtubeUrl={youtubeUrl}
+                youtubeChannelUrl={youtubeChannelUrl}
+            />
          
             <section className="bg-black py-16 px-4 md:px-8">
                 <div className="max-w-7xl mx-auto text-white">
@@ -261,7 +116,7 @@ export default function DecouvrirCafe5() {
                                 <div className="h-88 flex items-center justify-center mb-6">
                                     <Image 
                                         src={model.image} 
-                                        alt={model.title} 
+                                        alt={model.name} 
                                         width={300}
                                         height={300}
                                         className="max-h-full w-auto"
@@ -269,14 +124,14 @@ export default function DecouvrirCafe5() {
                                 </div>
                                 
                                 <h3 className="text-xl font-bold mb-2">
-                                    {model.title}
+                                    {model.name}
                                 </h3>
                                 <p className="text-white text-sm mb-6 h-10">
                                     {model.subtitle}
                                 </p>
 
                                 <div className="w-full">
-                                    {model.features.map((feature, index) => (
+                                    {model.features && model.features.map((feature, index) => (
                                         <div 
                                             key={index} 
                                             className="py-3 border-b border-white last:border-transparent">
@@ -288,7 +143,7 @@ export default function DecouvrirCafe5() {
                                 </div>
                                 
                                 <button className={`w-full font-bold rounded-full py-3 mt-8 cursor-pointer border hover:bg-white hover:text-black transition-all`}>
-                                    {model.buttonText}
+                                    Achetez maintenant
                                 </button>
                             </div>
                         ))}
