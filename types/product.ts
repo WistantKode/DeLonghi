@@ -26,8 +26,8 @@ export interface Product {
 
 export interface ProductSectionProps {
   products: Product[];
-  title?: string | null;
-  subtitle?: string | null;
+  title?: React.ReactNode | null;
+  subtitle?: React.ReactNode | null;
   backgroundImage?: string | null;
   defaultListingTitle?: string;
   listingPreTitle?: string;
