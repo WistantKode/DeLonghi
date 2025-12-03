@@ -216,7 +216,7 @@ export default function ExpressoBroyeurs() {
                         <p className="text-sm text-gray-600">
                             Chaque expresso broyeur De'Longhi vous demandera le même nettoyage : rincer l'infuseur amovible (qui se trouve dans la trappe derrière le réservoir d'eau) 
                             sous l'eau chaude et faire le détartrage (programme automatique). En revanche, si vous avez une buse vapeur, vous devez la nettoyer manuellement alors que 
-                            si vous optez pour la technologie LatteCrema Hot avec carafe dédiée, elle se nettoie en profondeur grâce à un cycle automatique de rinçage ("Clean").
+                            si vous optez pour la technologie LatteCrema Hot avec carafe dédiée, elle se nettoie en profondeur grâce à un cycle automatique de rinçage (&#34;Clean").
                         </p>
                     </div>
             </div>
