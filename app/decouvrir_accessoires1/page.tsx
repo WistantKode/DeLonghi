@@ -28,7 +28,10 @@ const productData: Product = {
         "/accessoires/decouvrir1_4.avif",
         "/accessoires/decouvrir1_4.avif",
         "/accessoires/decouvrir1_5.avif",
-    ]
+    ],
+    status: "",
+    image: "",
+    category: ""
 };
 
 export default function DecouvrirAccessoires1() {

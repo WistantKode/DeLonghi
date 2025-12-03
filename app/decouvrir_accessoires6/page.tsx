@@ -27,7 +27,10 @@ const productData: Product = {
         "/accessoires/decouvrir6_3.avif",
         "/accessoires/decouvrir6_4.avif",
         "/accessoires/decouvrir6_5.avif",
-    ]
+    ],
+    status: "",
+    image: "",
+    category: ""
 };
 
 
