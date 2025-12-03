@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 interface HeroProps {
     title?: React.ReactNode;
-    subtitle?: string;
+    subtitle?: React.ReactNode | string | null;
     ctaText?: string;
     ctaLink?: string;
     tagline?: string;
