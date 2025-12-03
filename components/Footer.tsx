@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaShippingFast, FaRedo, FaLock, FaCreditCard, FaApple, FaGooglePlay, FaAngleDown, FaYoutube } from 'react-icons/fa'; 
 import { BsQuestionCircle } from "react-icons/bs";
 import { FaBookOpenReader, FaFacebookF, FaInstagram } from "react-icons/fa6";
@@ -231,7 +232,7 @@ const Footer = () => {
               <div className="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
                 {/* Gauche : Logo et drapeau */}
                 <div className="flex flex-col md:flex-row items-center gap-4 w-full lg:w-auto">
-                  <img src="delonghi_blanc.png" alt="De'Longhi" className="h-16 md:h-20 bg-white px-2" />
+                  <Image src="/delonghi_blanc.png" alt="De'Longhi" width={160} height={80} className="h-16 md:h-20 bg-white px-2" />
                   <div className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded border border-gray-600">
                     <span className="text-sm">fr</span>
                     <FaAngleDown className="" />
@@ -274,12 +275,12 @@ const Footer = () => {
               <div className="flex flex-col lg:flex-row justify-between items-center mb-6 gap-4">
                 {/* payements*/}
                 <div className="flex flex-wrap justify-center gap-2 text-xs text-gray-400">
-                  <img src="paiement/apple-pay.svg" alt="Apple Pay" className="h-6"/>
-                  <img src="paiement/american-express.svg" alt="American Express" className="h-6"/>
-                  <img src="paiement/mastercard.svg" alt="Mastercard" className="h-6"/>
-                  <img src="paiement/paypal.svg" alt="PayPal" className="h-6"/>
-                  <img src="paiement/klarna.svg" alt="Klarna" className="h-6"/>
-                  <img src="paiement/visa.svg" alt="Visa" className="h-6"/>
+                  <Image src="/paiement/apple-pay.svg" alt="Apple Pay" width={40} height={24} className="h-6"/>
+                  <Image src="/paiement/american-express.svg" alt="American Express" width={40} height={24} className="h-6"/>
+                  <Image src="/paiement/mastercard.svg" alt="Mastercard" width={40} height={24} className="h-6"/>
+                  <Image src="/paiement/paypal.svg" alt="PayPal" width={40} height={24} className="h-6"/>
+                  <Image src="/paiement/klarna.svg" alt="Klarna" width={40} height={24} className="h-6"/>
+                  <Image src="/paiement/visa.svg" alt="Visa" width={40} height={24} className="h-6"/>
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center gap-4">

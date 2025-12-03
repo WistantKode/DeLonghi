@@ -17,7 +17,7 @@ const MachineCard: React.FC<MachineCardProps> = ({ img, title, description, ctaT
     return (
         <div className="flex flex-col h-full p-4">
             <div className="w-full max-w-[300px] sm:max-w-[350px] mx-auto mb-6">
-                <img src={img} alt={`Machine à café ${title}`} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
+                <Image src={img} alt={`Machine à café ${title}`} width={350} height={350} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             
             <div className="flex flex-col items-center flex-grow">
@@ -44,7 +44,7 @@ export default function DecouvrirCafe2() {
     const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
     
     const coffeeMachineStyle = {
-        backgroundImage: 'url("bg1.jpg")',
+        backgroundImage: 'url("/bg1.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -52,13 +52,13 @@ export default function DecouvrirCafe2() {
 
     const machines = [
         {
-            img: "cafe/rivelia1.avif",
+            img: "/cafe/rivelia1.avif",
             title: "Rivelia",
             description: "Tournez, changez, dégustez ! Découvrez tout un monde de saveurs à chaque tasse.",
             ctaText: "Rivelia avec la technologie LatteCrema Hot",
         },
         {
-            img: "cafe/rivelia2.avif",
+            img: "/cafe/rivelia2.avif",
             title: "Eletta Explore",
             description: "Une variété infinie, en toute simplicité. De l'expresso au latte en passant par le cold brew, le tout préparé exactement comme vous l'aimez !",
             ctaText: "Rivelia avec mousseur à lait manuel",
@@ -74,7 +74,7 @@ export default function DecouvrirCafe2() {
                 title={<>Passez à l&apos;expérience  <br className="hidden lg:block"/> d&apos;un café Perfetto</>}
                 subtitle={<>Découvrez le monde infini des saveurs et des arômes du café en grain avec <br className="hidden lg:block"/> Rivelia, l&apos;expresso broyeur qui transforme votre café en une expérience unique.</>}
                 ctaText="Choisissez Perfetto"
-                videoUrl="cafe/video_cafe1.webm"
+                videoUrl="/cafe/video_cafe1.webm"
                 textColor='text-white' 
                 contentPosition="right"
                 btnColor={whiteButtonWithGrayText}
@@ -87,7 +87,7 @@ export default function DecouvrirCafe2() {
                 {/* Bloc Vidéo */}
                 <div className="w-full lg:w-1/2">
                    <video autoPlay loop muted playsInline className="w-full h-auto " >
-                      <source src="cafe/video_cafe.webm" type="video/webm" /> 
+                      <source src="/cafe/video_cafe.webm" type="video/webm" /> 
                    </video>
                 </div>
 
@@ -129,7 +129,7 @@ export default function DecouvrirCafe2() {
 
               {/* Bloc Image */}
               <div className="w-full lg:w-1/2">
-                  <img src="cafe/decouvrir_cafe2.avif" alt="Rivelia Design" className="w-full h-auto " /> 
+                  <Image src="/cafe/decouvrir_cafe2.avif" alt="Rivelia Design" width={800} height={600} className="w-full h-auto " /> 
               </div>
             </section>
 
@@ -138,7 +138,7 @@ export default function DecouvrirCafe2() {
                 tagline="ECRAN TACTILE"
                 title={<>L&apos;expérience personnalisée d&apos;un café Perfetto</>}
                 subtitle={<>Laissez-vous séduire par un délicieux moment café. <br className="hidden lg:block"/>Vous n&apos;aurez qu&apos;à faire glisser votre doigt sur son écran tactile intuitif couleur de 3,5 pouces aux animations immersives pour que Rivelia vous accompagne des grains à votre tasse parfaite. <br className="hidden lg:block"/>Avec jusqu&apos;à 4 profils d&apos;utilisateurs, vous pouvez créer vos menus café personnalisés et adapter vos boissons selon votre propre goût unique.</>}
-                videoUrl="cafe/video_cafe1.webm"
+                videoUrl="/cafe/video_cafe1.webm"
                 textColor='text-white' 
                 contentPosition="center"
             />
@@ -147,7 +147,7 @@ export default function DecouvrirCafe2() {
             <section className="w-full flex flex-col lg:flex-row px-4 lg:pr-15 lg:pl-20 mt-10 mb-20 gap-10 lg:gap-30">
                <div className="w-full lg:w-1/2">
                   <video autoPlay loop muted playsInline className="w-full h-auto shadow-lg" >
-                      <source src="cafe/video_cafe3.webm" type="video/webm" /> 
+                      <source src="/cafe/video_cafe3.webm" type="video/webm" /> 
                   </video>
                </div>
                <div className="flex flex-col justify-center w-full lg:w-1/2 gap-4 text-center lg:text-left">

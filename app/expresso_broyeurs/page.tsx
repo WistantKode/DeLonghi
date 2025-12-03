@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
 import { Product } from '@/types/product';
 
@@ -33,108 +34,14 @@ const ContentBlock = ({ title, content, imageUrl, imageAlt }: ContentBlockProps)
                 </div>
             </div>
 
-            {imageUrl && (
+            {imageUrl && imageAlt && (
                 <div className="w-full overflow-hidden my-8 px-4 lg:px-0">
-                    <img src={imageUrl} alt={imageAlt} className='w-full h-auto object-cover rounded-lg lg:rounded-none' />
+                    <Image src={imageUrl} alt={imageAlt} width={1200} height={600} className='w-full h-auto object-cover rounded-lg lg:rounded-none' />
                 </div>
             )}
         </div>
     );
 };
-
-
-const initialProducts: Product[] = [
-    { 
-        id: 1, 
-        name: "Rivelia Jade Green | Couleur exclusive", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "EXCLUSIVITÉ WEB", 
-        image: "product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Technologie Cold Brew intégrée",
-            "Double système de préparation",
-            "Ecran tactile intuitif",
-            "Nettoyage automatique"
-        ]
-    },
-    { 
-        id: 2, 
-        name: "Rivelia - Sand Beige", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "product/machine.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Connectivité Wi-Fi",
-            "Contrôle via application",
-            "13 recettes personnalisables",
-            "Broyeur céramique"
-        ]
-    },
-    { 
-        id: 3, 
-        name: "Rivelia Onyx Black", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "En rupture de stock", 
-        image: "product/machine2.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Design compact",
-            "Système LatteCrema",
-            "Chauffe-tasses intégré",
-            "Rinçage automatique"
-        ]
-    },
-    { 
-        id: 4, 
-        name: "Rivelia Arctic White", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "product/machine1.avif",
-        category: "Rivelia",
-        colors: 5,
-        features: [
-            "Double brûleur",
-            "Réservoir lait intégré",
-            "Ecran couleur HD",
-            "Recettes barista"
-        ]
-    },
-    { 
-        id: 5, 
-        name: "Eletta Explore, Gris sombre", 
-        price: "699,00 €", 
-        oldPrice: "799,00 €", 
-        rating: 4.7, 
-        reviews: 750, 
-        status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
-        category: "Eletta Explore",
-        colors: 5,
-        features: [
-            "Mouture réglable",
-            "Programmation horaire",
-            "Détartrage facile",
-            "Silencieux"
-        ]
-    },
-];
 
 const contentBlocks = [
     {
@@ -149,14 +56,45 @@ const contentBlocks = [
 
 
 export default function ExpressoBroyeurs() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: Product[] = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                setError("Failed to load products.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-12">Chargement des produits...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-12 text-red-500">{error}</div>;
+    }
     
     const listingProps = {
-        products: initialProducts,
+        products: products,
         title: "Machines à café Expresso Broyeurs",
         defaultListingTitle: "Expresso Broyeurs", 
         subtitle: "Découvrez notre gamme d'expresso broyeurs et créez vos boissons café préférées. Vivez votre expérience café à la maison !.",
         filterOptions: ['Trier par', 'Prix', 'Promotion', 'Couleur', 'Catégorie', 'Série', 'Type de boisson', 'Nettoyage'],
-        backgroundImage: "bg1.jpg", 
+        backgroundImage: "/bg1.jpg", 
         productsPerPage: 4,
     };
 
@@ -180,7 +118,7 @@ export default function ExpressoBroyeurs() {
          {/* SECTION 1 : IMAGE GAUCHE / TEXTE DROITE */}
          <section className="w-full flex flex-col lg:flex-row px-4 lg:px-24 gap-10 lg:gap-20 mb-10">
                <div className="w-full lg:w-[60%]">
-                  <img src="cafe/expresso1.avif" alt="Gamme machines" className="w-full h-auto object-cover" />
+                  <Image src="/cafe/expresso1.avif" alt="Gamme machines" width={800} height={600} className="w-full h-auto object-cover" />
                </div>
                <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 text-center lg:text-left">
                   <h2 className="font-medium text-2xl lg:text-3xl text-[#0A2342] md">
@@ -205,7 +143,7 @@ export default function ExpressoBroyeurs() {
                </div>
 
                <div className="w-full lg:w-[60%]">
-                  <img src="cafe/expresso2.avif" alt="Choix machine" className="w-full h-auto object-cover" />
+                  <Image src="/cafe/expresso2.avif" alt="Choix machine" width={800} height={600} className="w-full h-auto object-cover" />
                </div>
          </section>
 
@@ -222,7 +160,7 @@ export default function ExpressoBroyeurs() {
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-6 lg:px-24 gap-8 lg:gap-12">
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/expresso3.avif" alt="Design" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/expresso3.avif" alt="Design" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Le Design
                     </h3>
@@ -233,7 +171,7 @@ export default function ExpressoBroyeurs() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/expresso4.avif" alt="Buse à lait" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/expresso4.avif" alt="Buse à lait" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                       Buse à lait
                     </h3>
@@ -244,7 +182,7 @@ export default function ExpressoBroyeurs() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/expresso5.avif" alt="Choix boissons" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/expresso5.avif" alt="Choix boissons" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Choix de boissons à base de café
                     </h3>
@@ -255,7 +193,7 @@ export default function ExpressoBroyeurs() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/expresso6.avif" alt="Interface" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/expresso6.avif" alt="Interface" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Interface intuitive
                     </h3>
@@ -270,7 +208,7 @@ export default function ExpressoBroyeurs() {
 
             {/* NETTOYAGE ONE TOUCH */}
             <div className="flex flex-col gap-6 items-center mt-16 lg:mt-20 px-4">
-                    <img src="cafe/expresso7.avif" alt="Nettoyage" className="max-w-full lg:max-w-lg h-auto" />
+                    <Image src="/cafe/expresso7.avif" alt="Nettoyage" width={500} height={400} className="max-w-full lg:max-w-lg h-auto" />
                     <div className="text-center max-w-2xl">
                         <h3 className="font-medium text-xl text-[#0A2342] mb-4">
                             Nettoyage automatique "One Touch"
@@ -295,7 +233,7 @@ export default function ExpressoBroyeurs() {
                </div>
 
                <div className="w-full lg:w-[60%]">
-                  <img src="cafe/expresso8.avif" alt="Mousse de lait" className="w-full h-auto object-cover" />
+                  <Image src="/cafe/expresso8.avif" alt="Mousse de lait" width={800} height={600} className="w-full h-auto object-cover" />
                </div>
             </section>
 

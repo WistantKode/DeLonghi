@@ -5,6 +5,7 @@ import YouTube from 'react-youtube';
 import { FaPlayCircle, FaRegCopy,FaYoutube} from "react-icons/fa";
 import Hero from '@/components/Hero';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Fonction de simulation pour copier le lien
 const handleCopyLink = (url: string) => {
@@ -56,7 +57,7 @@ export default function DecouvrirCafe5() {
                 "Technologie Bean Adapt",
                 "30 délicieux cafés chauds et froids d'une simple touche"
             ],
-            image: "cafe/decouvrir_cafe1_2.avif",
+            image: "/cafe/decouvrir_cafe1_2.avif",
             buttonText: "Achetez maintenant"
         },
         {
@@ -69,7 +70,7 @@ export default function DecouvrirCafe5() {
                 "Technologie Bean Adapt", 
                 "Plus de 35 délicieux cafés chauds et froids d'une simple touche"
             ],
-            image: "cafe/decouvrir_cafe1_3.avif",
+            image: "/cafe/decouvrir_cafe1_3.avif",
             buttonText: "Achetez maintenant"
         },
         {
@@ -82,7 +83,7 @@ export default function DecouvrirCafe5() {
                 "Technologie Bean Adapt",
                 "Plus de 35 délicieux cafés chauds et froids d'une simple touche"
             ],
-            image: "cafe/decouvrir_cafe1_3.avif", 
+            image: "/cafe/decouvrir_cafe1_3.avif", 
             buttonText: "Achetez maintenant"
         }
     ];
@@ -105,7 +106,7 @@ export default function DecouvrirCafe5() {
 
             <div className="bg-white w-full hidden lg:flex justify-between z-10 mt-48 -mb-10 pl-30 pr-30 items-center">
                 <div className="flex items-center">
-                    <img className="w-20" src="cafe/decouvrir_cafe1_3.avif" alt="" />
+                    <Image className="w-20" src="/cafe/decouvrir_cafe1_3.avif" alt="" width={80} height={80} />
                     <span className="font-bold text-xl pl-8">Laissez-vous tenter par la PrimaDonna Aromatic</span>
                 </div>
 
@@ -120,7 +121,7 @@ export default function DecouvrirCafe5() {
                 title={<>Perfetto, Ultimate Pleasure</>}
                 subtitle={<> Plongez dans un monde aux saveurs café incomparables Avec PrimaDonna Aromatic, chaque tasse devient une véritable œuvre d'art, un chef-d'œuvre d'arômes subtilement <br /> conçus pour éveiller vos sens. </>}
                 ctaText="PrimaDonna Aromatic"
-                videoUrl="cafe/video_cafe10.webm"
+                videoUrl="/cafe/video_cafe10.webm"
                 textColor='text-black' 
                 btnColor={customBlueButton}
                 contentPosition="center"
@@ -133,7 +134,7 @@ export default function DecouvrirCafe5() {
             <section className="w-full flex flex-col lg:flex-row bg-black gap-10 lg:gap-30 pt-10 lg:pt-20 text-white px-6 lg:px-0 pb-10 lg:pb-0">
               
                <div className=" w-full lg:w-1/2">
-                     <img src="cafe/decouvrir_cafe5.avif" alt="" /> 
+                     <Image src="/cafe/decouvrir_cafe5.avif" alt="" width={800} height={600} /> 
                </div>
 
               <div className="flex flex-col justify-center w-full lg:w-1/2 gap-4 lg:pr-20 text-center lg:text-left">
@@ -166,7 +167,7 @@ export default function DecouvrirCafe5() {
                </div>
 
                <div className="w-full lg:w-1/2">
-                     <img src="cafe/decouvrir_cafe5_1.avif" alt="" /> 
+                     <Image src="/cafe/decouvrir_cafe5_1.avif" alt="" width={800} height={600} /> 
                </div>
 
 
@@ -258,9 +259,11 @@ export default function DecouvrirCafe5() {
 
                             <div key={model.id} className="flex flex-col items-center text-center p-6">
                                 <div className="h-88 flex items-center justify-center mb-6">
-                                    <img 
+                                    <Image 
                                         src={model.image} 
                                         alt={model.title} 
+                                        width={300}
+                                        height={300}
                                         className="max-h-full w-auto"
                                     />
                                 </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react'; 
+import Image from 'next/image';
 import ProductDescriptionSection from '@/components/ProductDescriptionSection'; 
 import { Product } from '@/types/product';
 
@@ -64,7 +65,7 @@ export default function DecouvrirAccessoires1() {
                </div>
 
                <div className="w-full lg:w-[60%]">
-                     <img src="/accessoires/decouvrir1_4.avif" alt="Accessoires" className="w-full h-auto object-cover" /> 
+                     <Image src="/accessoires/decouvrir1_4.avif" alt="Accessoires" width={800} height={600} className="w-full h-auto object-cover" /> 
                </div>
 
 
@@ -74,7 +75,7 @@ export default function DecouvrirAccessoires1() {
            <section className="w-full flex flex-col-reverse lg:flex-row gap-10 lg:gap-24 mt-16 lg:mt-24 px-4 lg:px-24 mb-16 lg:mb-24">
 
                 <div className="w-full lg:w-[60%]">
-                    <img src="/accessoires/decouvrir1_5.avif" alt="Technologie Cool" className="w-full h-auto object-cover" /> 
+                    <Image src="/accessoires/decouvrir1_5.avif" alt="Technologie Cool" width={800} height={600} className="w-full h-auto object-cover" /> 
                </div>
 
               
@@ -101,7 +102,7 @@ export default function DecouvrirAccessoires1() {
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-6 lg:px-24 gap-8 lg:gap-12 mt-10 lg:mt-16 mb-20">
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="/accessoires/decouvrir1_6.avif" alt="Bean Adjust" className="w-full h-auto object-cover" />
+                    <Image src="/accessoires/decouvrir1_6.avif" alt="Bean Adjust" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Savourez votre café Perfetto, du grain à la tasse
                     </h3>
@@ -112,7 +113,7 @@ export default function DecouvrirAccessoires1() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="/accessoires/decouvrir1_7.avif" alt="To Go" className="w-full h-auto object-cover" />
+                    <Image src="/accessoires/decouvrir1_7.avif" alt="To Go" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Préparez votre café à emporter
                     </h3>
@@ -123,7 +124,7 @@ export default function DecouvrirAccessoires1() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="/accessoires/decouvrir1_8.avif" alt="Boissons végétales" className="w-full h-auto object-cover" />
+                    <Image src="/accessoires/decouvrir1_8.avif" alt="Boissons végétales" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Savourez des boissons végétales parfaites
                     </h3>
@@ -134,7 +135,7 @@ export default function DecouvrirAccessoires1() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="/accessoires/decouvrir1_9.avif" alt="Nettoyage" className="w-full h-auto object-cover" />
+                    <Image src="/accessoires/decouvrir1_9.avif" alt="Nettoyage" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Une machine propre sans effort
                     </h3>

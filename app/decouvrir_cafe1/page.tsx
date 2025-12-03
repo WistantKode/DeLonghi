@@ -42,7 +42,7 @@ const MachineCard: React.FC<MachineCardProps> = ({ img, title, description, ctaT
     return (
         <div className="flex flex-col items-center p-4 h-full">
             <div className="mb-4 w-full max-w-[200px] sm:max-w-[250px] mx-auto">
-                <img src={img} alt={`Machine à café ${title}`} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
+                <Image src={img} alt={`Machine à café ${title}`} width={250} height={250} className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300" />
             </div>
             
             <div className="flex flex-col flex-grow items-center gap-4 w-full">
@@ -76,25 +76,25 @@ export default function DecouvrirCafe1() {
 
     const machines = [
         {
-            img: "cafe/decouvrir_cafe1.avif",
+            img: "/cafe/decouvrir_cafe1.avif",
             title: "Rivelia",
             description: "Tournez, changez, dégustez ! Découvrez tout un monde de saveurs à chaque tasse.",
             ctaText: "Découvrez le vôtre",
         },
         {
-            img: "cafe/decouvrir_cafe1_2.avif",
+            img: "/cafe/decouvrir_cafe1_2.avif",
             title: "Eletta Explore",
             description: "Une variété infinie, en toute simplicité. De l'expresso au latte en passant par le cold brew, le tout préparé exactement comme vous l'aimez !",
             ctaText: "Découvrez-en plus",
         },
         {
-            img: "cafe/decouvrir_cafe1_3.avif",
+            img: "/cafe/decouvrir_cafe1_3.avif",
             title: "PrimaDonna Aromatic",
             description: "Le parfum de votre moment Perfetto. Laissez-vous tenter par des boissons lactées soyeuses et onctueuses, en toute simplicité.",
             ctaText: "Savourez-les dès maintenant",
         },
         {
-            img: "cafe/decouvrir_cafe1_4.avif",
+            img: "/cafe/decouvrir_cafe1_4.avif",
             title: "La Specialista Touch",
             description: "Ensemble, créons votre café Perfetto. Une précision et un contrôle absolus pour une tasse sur mesure.",
             ctaText: "Créez la vôtre",
@@ -120,7 +120,7 @@ export default function DecouvrirCafe1() {
                 title={<>Ce n&apos;est pas seulement <br className="hidden sm:block"/> parfait. C&apos;est Perfetto.</>}
                 subtitle={<>La perfection, c&apos;est le souci du moindre détail. Le grain. La température. <br className="hidden lg:block"/> La mousse soyeuse. Perfetto, c&apos;est le plaisir de prendre le temps, avec les rayons <br className="hidden lg:block"/> du soleil sur le visage et une vue inoubliable.</>}
                 ctaText="Choisissez votre De'Longhi"
-                imageUrl="cafe/homme1.jpg"
+                imageUrl="/cafe/homme1.jpg"
                 textColor='text-black' 
                 btnColor={customBlueButton}
             />
@@ -129,7 +129,7 @@ export default function DecouvrirCafe1() {
             <section className="w-full flex flex-col lg:flex-row items-center justify-center py-12 lg:py-20 px-4 lg:px-20 gap-10">
                 <div className="w-full lg:w-1/2 max-w-3xl shadow-xl overflow-hidden">
                    <video autoPlay loop muted playsInline className="w-full h-auto" >
-                      <source src="cafe/video_cafe.webm" type="video/webm" /> 
+                      <source src="/cafe/video_cafe.webm" type="video/webm" /> 
                    </video>
                 </div>
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-6 text-center lg:text-left px-4">
@@ -182,7 +182,7 @@ export default function DecouvrirCafe1() {
 
                <div className="w-full lg:w-1/2 order-1 lg:order-2">
                   <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-                      <source src="cafe/video_cafe1.webm" type="video/webm" /> 
+                      <source src="/cafe/video_cafe1.webm" type="video/webm" /> 
                   </video>
                </div>
             </section>
@@ -192,7 +192,7 @@ export default function DecouvrirCafe1() {
                 <div className="w-full lg:w-1/2 px-4 lg:pl-20 lg:pr-10">
                    <div className="shadow-xl overflow-hidden">
                        <video autoPlay loop muted playsInline className="w-full h-auto" >
-                          <source src="cafe/video_cafe2.webm" type="video/webm" /> 
+                          <source src="/cafe/video_cafe2.webm" type="video/webm" /> 
                        </video>
                    </div>
                 </div>

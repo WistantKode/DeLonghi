@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react'; 
+import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link'; 
 
@@ -12,11 +13,11 @@ interface Product {
 }
 
 const products: Product[] = [
-    { name: "Machines à Café", category: "Machines à Café", imageUrl: "product/machine.avif", link: "/cafe" },
-    { name: "Machines à Café à Grain", category: "Expresso broyeurs", imageUrl: "product/machine1.avif", link: "/expresso_broyeurs" },
-    { name: "Machines Expresso Manuelles", category: "Machines expresso", imageUrl: "product/machine2.avif", link: "/machines_expresso" },
-    { name: "Climatiseurs mobiles", category: "Climatiseurs Mobiles", imageUrl: "product/machine3.avif", link: "/appareils_confort" },
-    { name: "Déshumidificateur d'air", category: "Déshumidificateur", imageUrl: "product/machine4.avif", link: "/deshumi" },
+    { name: "Machines à Café", category: "Machines à Café", imageUrl: "/product/machine.avif", link: "/cafe" },
+    { name: "Machines à Café à Grain", category: "Expresso broyeurs", imageUrl: "/product/machine1.avif", link: "/expresso_broyeurs" },
+    { name: "Machines Expresso Manuelles", category: "Machines expresso", imageUrl: "/product/machine2.avif", link: "/machines_expresso" },
+    { name: "Climatiseurs mobiles", category: "Climatiseurs Mobiles", imageUrl: "/product/machine3.avif", link: "/appareils_confort" },
+    { name: "Déshumidificateur d'air", category: "Déshumidificateur", imageUrl: "/product/machine4.avif", link: "/deshumi" },
 ];
 
 const ProductCarousel: React.FC = () => {
@@ -58,9 +59,11 @@ const ProductCarousel: React.FC = () => {
     const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
         <div className="flex flex-col items-center p-4 min-w-[280px] max-w-[300px] mx-4 transition-transform duration-300">
             <div className="h-64 flex items-center justify-center bg-transparent">
-                <img 
+                <Image 
                     src={product.imageUrl} 
                     alt={product.name} 
+                    width={256}
+                    height={256}
                     className="max-h-full max-w-full object-contain" 
                 />
             </div>

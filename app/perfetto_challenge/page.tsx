@@ -43,7 +43,7 @@ export default function PerfettoChallenge() {
                 tagline="LE DÉFI PERFETTO !"
                 title={<>Brad a réussi. Vous  <br /> pouvez clairement y  <br /> arriver.</>}
                 subtitle={<> Brad Pitt a réussi à parler italien. A votre tour de jouer.</>}
-                videoUrl="cafe/video_cafe1.webm"
+                videoUrl="/cafe/video_cafe1.webm"
                 textColor='text-white' 
                 font= "bold"
             />
@@ -52,7 +52,7 @@ export default function PerfettoChallenge() {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-20 mt-10 lg:px-20">
                         
                 <div className="w-full lg:w-1/2">
-                    <img src="cafe/perfetto_challenge1.avif" alt="Défi Brad Pitt" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/perfetto_challenge1.avif" alt="Défi Brad Pitt" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-6 text-center lg:text-left">
@@ -118,7 +118,7 @@ export default function PerfettoChallenge() {
                 </div>
 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/perfetto_challenge2.avif" alt="Comment jouer" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/perfetto_challenge2.avif" alt="Comment jouer" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
             </section>
 

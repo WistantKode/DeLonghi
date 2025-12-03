@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ProductSection from '@/components/ProductSection'; 
 import { Product } from '@/types/product';
 
@@ -13,7 +14,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "EXCLUSIVITÉ WEB", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -31,7 +32,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine.avif",
+        image: "/product/machine.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -49,7 +50,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine2.avif",
+        image: "/product/machine2.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -67,7 +68,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -85,7 +86,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -99,14 +100,45 @@ const initialProducts: Product[] = [
 
 
 export default function DecouvrirCafe6() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: Product[] = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                setError("Failed to load products.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-12">Chargement des produits...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-12 text-red-500">{error}</div>;
+    }
     
     const listingProps = {
-        products: initialProducts,
+        products: products,
         defaultListingTitle: "Les cadeaux Perfetto", 
         title : <>Des cadeaux pour la maison : de <br className="hidden lg:block"/>nombreuses idées pour vous inspirer</>,
         subtitle: <>Vous êtes à la recherche du cadeau idéal? <br className="hidden lg:block"/> Découvrez notre sélection de cadeaux dédiés aux amateurs de café.</>,
         filterOptions: ['Trier par', 'Prix', 'Promotion', 'Couleur', 'Catégorie', 'Série', 'Type de boisson', 'Nettoyage'],
-        backgroundImage: "cafe/decouvrir_cafe6_5.avif", 
+        backgroundImage: "/cafe/decouvrir_cafe6_5.avif", 
         productsPerPage: 4,
     };
 
@@ -136,7 +168,7 @@ export default function DecouvrirCafe6() {
               </div>
 
               <div className="w-full lg:w-[60%]">
-                    <img src="cafe/decouvrir_cafe6.avif" alt="Tasses" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/decouvrir_cafe6.avif" alt="Tasses" width={800} height={600} className="w-full h-auto object-cover" /> 
               </div>
 
            </section>
@@ -145,7 +177,7 @@ export default function DecouvrirCafe6() {
            <section className="w-full flex flex-col lg:flex-row gap-10 px-6 lg:pl-15 mt-20">
               
               <div className="w-full lg:w-[60%]">
-                    <img src="cafe/decouvrir_cafe6_1.avif" alt="Petit déjeuner" className="w-full h-auto object-cover " /> 
+                    <Image src="/cafe/decouvrir_cafe6_1.avif" alt="Petit déjeuner" width={800} height={600} className="w-full h-auto object-cover " /> 
               </div>
 
              <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 lg:pr-6 text-center lg:text-left">
@@ -172,7 +204,7 @@ export default function DecouvrirCafe6() {
               </div>
 
               <div className="w-full lg:w-[60%]">
-                    <img src="cafe/decouvrir_cafe6_2.avif" alt="Distinta Titanium" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/decouvrir_cafe6_2.avif" alt="Distinta Titanium" width={800} height={600} className="w-full h-auto object-cover" /> 
               </div>
 
            </section>
@@ -181,7 +213,7 @@ export default function DecouvrirCafe6() {
            <section className="w-full flex flex-col lg:flex-row gap-10 px-6 lg:pl-15 mt-20">
               
               <div className="w-full lg:w-[60%]">
-                    <img src="cafe/decouvrir_cafe6_3.avif" alt="Machine à café" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/decouvrir_cafe6_3.avif" alt="Machine à café" width={800} height={600} className="w-full h-auto object-cover" /> 
               </div>
 
              <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 lg:pr-6 text-center lg:text-left">

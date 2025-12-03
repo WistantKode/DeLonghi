@@ -21,7 +21,7 @@ const productData: ProductData[] = [
         price: null, 
         originalPrice: null,
         link: "#23-series-large",
-        imageUrl: "cafe/23series1.avif", 
+        imageUrl: "/cafe/23series1.avif", 
     },
     {
         name: "23 Series",
@@ -29,7 +29,7 @@ const productData: ProductData[] = [
         price: null, 
         originalPrice: null,
         link: "#23-series-medium",
-        imageUrl: "cafe/23series2.avif", 
+        imageUrl: "/cafe/23series2.avif", 
     },
     {
         name: "Magnifica S Smart",
@@ -37,7 +37,7 @@ const productData: ProductData[] = [
         price: "419,90 €",
         originalPrice: "499,90 €",
         link: "#magnifica-s-smart",
-        imageUrl: "cafe/magnifica.avif", 
+        imageUrl: "/cafe/magnifica.avif", 
     },
     {
         name: "Dinamica Plus",
@@ -45,7 +45,7 @@ const productData: ProductData[] = [
         price: null, 
         originalPrice: null,
         link: "#dinamica-plus",
-        imageUrl: "cafe/dynamica.avif", 
+        imageUrl: "/cafe/dynamica.avif", 
     },
 ];
 
@@ -77,9 +77,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLarge = false, hid
     return (
         <Link href={product.link} className={`group block ${cardBgColor} overflow-hidden transition duration-300 ease-in-out h-full ${cardDirection}`}>
             <div className={imageContainerClasses}>
-                <img
+                <Image
                     src={product.imageUrl}
                     alt={product.name}
+                    width={isLarge ? 500 : 300}
+                    height={isLarge ? 500 : 300}
                     className="object-contain max-h-full w-full transform transition-transform duration-500 ease-in-out group-hover:scale-105"
                 />
             </div>
@@ -106,7 +108,7 @@ export default function Refurbished() {
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
     // const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
     const coffeeMachineStyle = {
-        backgroundImage: 'url("bg1.jpg")', 
+        backgroundImage: 'url("/bg1.jpg")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -125,7 +127,7 @@ export default function Refurbished() {
                 subtitle={<>Découvrez les produits reconditionnés par De&apos;Longhi et économisez jusqu&apos;à 45 %.</>}
                 ctaText="Expressos broyeurs automatiques reconditionnés"
                 ctaLink=""
-                videoUrl="cafe/video_cafe12.webm"
+                videoUrl="/cafe/video_cafe12.webm"
                 textColor='text-black' 
                 btnColor={customBlueButton}
                 btnWidth={btn}
@@ -152,7 +154,7 @@ export default function Refurbished() {
             <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 lg:px-20 gap-8 lg:gap-12 mb-12">
 
                 <div className="flex flex-col gap-4">
-                    <img src="cafe/decouvrir_cafe3.avif" alt="Savourez votre café Perfetto" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3.avif" alt="Savourez votre café Perfetto" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Savourez votre café Perfetto, du grain à la tasse
                     </h3>
@@ -163,7 +165,7 @@ export default function Refurbished() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <img src="cafe/decouvrir_cafe3_1.avif" alt="Préparez votre café à emporter" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_1.avif" alt="Préparez votre café à emporter" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Préparez votre café à emporter
                     </h3>
@@ -174,7 +176,7 @@ export default function Refurbished() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <img src="cafe/decouvrir_cafe3_2.avif" alt="Boissons végétales parfaites" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_2.avif" alt="Boissons végétales parfaites" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Savourez des boissons végétales parfaites
                     </h3>
@@ -185,7 +187,7 @@ export default function Refurbished() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                    <img src="cafe/decouvrir_cafe3_3.avif" alt="Une machine propre sans effort" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_3.avif" alt="Une machine propre sans effort" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Une machine propre sans effort
                     </h3>
@@ -257,7 +259,7 @@ export default function Refurbished() {
                 </div>
 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/refur5.avif" alt="Choix responsable" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/refur5.avif" alt="Choix responsable" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
 
@@ -266,7 +268,7 @@ export default function Refurbished() {
             {/* SECTION 4 : COFFEE LOUNGE (Image Gauche, Texte Droite) */}
             <section className="w-full flex flex-col-reverse lg:flex-row gap-8 lg:gap-16 mt-16 lg:px-20">
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/refur6.avif" alt="Coffee Lounge" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/refur6.avif" alt="Coffee Lounge" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-6 lg:pr-6">

@@ -21,7 +21,7 @@ export default function CoffeeClub() {
                 title={<>Profitez d&apos;un cadeau <br className="hidden md:block"/> exclusif d&apos;une valeur de <br className="hidden md:block"/> 70€</>}
                 subtitle={<>pour l&apos;achat d&apos;une machine à café parmi notre sélection sur notre site internet. <br/>Le kit sera automatiquement ajouté à votre panier.<br/>Offre valable du 05 septembre au 08 janvier 2026</>}
                 ctaText="Profitez de l'offre maintenant"
-                imageUrl="cafe/1.png"
+                imageUrl="/cafe/1.png"
                 textColor='text-white' 
                 font="font-bold"
                 btnColor={whiteButtonWithGrayText}
@@ -32,7 +32,7 @@ export default function CoffeeClub() {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-20 mt-10 lg:mt-16 mb-10 lg:px-20">
                
                <div className="w-full lg:w-1/2">
-                  <img src="promotions/promotion3.avif" alt="Promotion" className="w-full h-auto object-cover" /> 
+                  <Image src="/promotions/promotion3.avif" alt="Promotion" width={800} height={600} className="w-full h-auto object-cover" /> 
                </div>
                
                <div className="flex flex-col justify-center w-full lg:w-1/2 gap-4">
@@ -77,7 +77,7 @@ export default function CoffeeClub() {
                
                <div className="w-full lg:w-1/2">
                   <video autoPlay loop muted playsInline className="w-full h-auto" >
-                     <source src="cafe/video_cafe11.webm" type="video/webm" /> 
+                     <source src="/cafe/video_cafe11.webm" type="video/webm" /> 
                   </video>
                </div>
 
@@ -105,11 +105,11 @@ export default function CoffeeClub() {
                
                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                    <div className="flex justify-center">
-                      <img src="/cafe/coffeeclub1.png" alt="Machine à café 1" className="max-w-full h-auto hover:scale-105 transition-transform duration-300" />
+                      <Image src="/cafe/coffeeclub1.png" alt="Machine à café 1" width={600} height={400} className="max-w-full h-auto hover:scale-105 transition-transform duration-300" />
                    </div>
 
                    <div className="flex justify-center">
-                       <img src="/cafe/coffeeclub2.png" alt="Machine à café 2" className="max-w-full h-auto hover:scale-105 transition-transform duration-300" /> 
+                       <Image src="/cafe/coffeeclub2.png" alt="Machine à café 2" width={600} height={400} className="max-w-full h-auto hover:scale-105 transition-transform duration-300" /> 
                    </div>
                </div>
 

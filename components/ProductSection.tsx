@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { TbPointFilled } from "react-icons/tb";
 import { FaHeart, FaStar, FaRegHeart } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
@@ -64,7 +65,7 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
                 
                 {/* Image produit */}
                 <div className="relative h-48 bg-gray-100 flex items-center justify-center">
-                    <img src={product.image} alt={product.name} className="max-h-44 object-contain transition-transform duration-300 group-hover:scale-105" />
+                    <Image src={product.image} alt={product.name} width={200} height={200} className="max-h-44 object-contain transition-transform duration-300 group-hover:scale-105" />
                 </div>
             </div>
 
@@ -200,7 +201,7 @@ const ProductSection = ({
         <div className="max-w-7xl mx-auto ">
             
             {/* Hero */}
-            {title && (
+            {title && backgroundImage &&(
 
                 <section  className="relative h-[400px] sm:h-[500px] w-full bg-cover bg-center bg-no-repeat flex items-center" style={{ backgroundImage: `url("${backgroundImage}")` }}>
                     <div className="absolute inset-0 bg-black opacity-30"></div>

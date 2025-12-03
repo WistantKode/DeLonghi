@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
 import { Product } from '@/types/product';
 
@@ -33,9 +34,9 @@ const ContentBlock = ({ title, content, imageUrl, imageAlt }: ContentBlockProps)
                 </div>
             </div>
 
-            {imageUrl && (
+            {imageUrl && imageAlt && (
                 <div className="w-full overflow-hidden my-8 px-4 lg:px-0">
-                    <img src={imageUrl} alt={imageAlt} className='w-full h-auto object-cover rounded-lg lg:rounded-none' />
+                    <Image src={imageUrl} alt={imageAlt} width={1200} height={600} className='w-full h-auto object-cover rounded-lg lg:rounded-none' />
                 </div>
             )}
         </div>
@@ -52,7 +53,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "EXCLUSIVITÉ WEB", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -70,7 +71,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine.avif",
+        image: "/product/machine.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -88,7 +89,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine2.avif",
+        image: "/product/machine2.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -106,7 +107,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -124,7 +125,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -149,14 +150,45 @@ const contentBlocks = [
 
 
 export default function MachinesExpresso() {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: Product[] = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                setError("Failed to load products.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-12">Chargement des produits...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-12 text-red-500">{error}</div>;
+    }
     
     const listingProps = {
-        products: initialProducts,
+        products: products,
         title: "Machines Expresso Manuelles",
         defaultListingTitle: "Machines Expresso", 
         subtitle: "Avec les machines à expressos, l'imagination n'a plus de limites lorsqu'il s'agit de préparer de délicieux cafés. Chaque tasse devient un chef-d'œuvre digne d'un véritable barista.",
         filterOptions: ['Trier par', 'Prix', 'Promotion', 'Couleur', 'Catégorie', 'Série', 'Type de boisson', 'Nettoyage'],
-        backgroundImage: "bg1.jpg", 
+        backgroundImage: "/bg1.jpg", 
         productsPerPage: 4,
     };
 
@@ -180,7 +212,7 @@ export default function MachinesExpresso() {
          {/* SECTION 1 : IMAGE GAUCHE / TEXTE DROITE */}
          <section className="w-full flex flex-col lg:flex-row px-4 lg:pr-10 gap-10 lg:gap-30 mb-10">
                <div className="w-full lg:w-[60%]">
-                  <img src="cafe/machines_expresso1.avif" alt="Meilleurs cafés" className="w-full h-auto object-cover" />
+                  <Image src="/cafe/machines_expresso1.avif" alt="Meilleurs cafés" width={800} height={600} className="w-full h-auto object-cover" />
                </div>
                <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 text-center lg:text-left">
                   <h2 className="font-medium text-2xl lg:text-3xl text-[#0A2342]">
@@ -206,7 +238,7 @@ export default function MachinesExpresso() {
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-6 lg:px-24 gap-8 lg:gap-12 mb-12">
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/machines_expresso2.avif" alt="Finition" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/machines_expresso2.avif" alt="Finition" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Finition et Design
                     </h3>
@@ -218,7 +250,7 @@ export default function MachinesExpresso() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/machines_expresso3.avif" alt="Types de boissons" className="w-full h-auto object-cover " />
+                    <Image src="/cafe/machines_expresso3.avif" alt="Types de boissons" width={400} height={300} className="w-full h-auto object-cover " />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Types de boissons
                     </h3>
@@ -230,7 +262,7 @@ export default function MachinesExpresso() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/machines_expresso4.avif" alt="Pression" className="w-full h-auto object-cover " />
+                    <Image src="/cafe/machines_expresso4.avif" alt="Pression" width={400} height={300} className="w-full h-auto object-cover " />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Pression
                     </h3>
@@ -241,7 +273,7 @@ export default function MachinesExpresso() {
                 </div>
 
                 <div className="flex flex-col gap-4 items-center lg:items-start text-center lg:text-left">
-                    <img src="cafe/machines_expresso5.avif" alt="Moussage lait" className="w-full h-auto object-cover " />
+                    <Image src="/cafe/machines_expresso5.avif" alt="Moussage lait" width={400} height={300} className="w-full h-auto object-cover " />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Système de moussage du lait
                     </h3>
@@ -267,7 +299,7 @@ export default function MachinesExpresso() {
                </div>
 
                <div className="w-full lg:w-[60%] ">
-                  <img src="cafe/machines_expresso6.avif" alt="Débutants" className="w-full h-auto object-cover" />
+                  <Image src="/cafe/machines_expresso6.avif" alt="Débutants" width={800} height={600} className="w-full h-auto object-cover" />
                </div>
             </section>
 

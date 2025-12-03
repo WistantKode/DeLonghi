@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductSection from '@/components/ProductSection'; 
 import Hero from '@/components/Hero';
 import Link from 'next/link';
@@ -16,7 +16,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "EXCLUSIVITÉ WEB", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -34,7 +34,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine.avif",
+        image: "/product/machine.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -52,7 +52,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "En rupture de stock", 
-        image: "product/machine2.avif",
+        image: "/product/machine2.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -70,7 +70,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "product/machine1.avif",
+        image: "/product/machine1.avif",
         category: "Rivelia",
         colors: 5,
         features: [
@@ -88,7 +88,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -106,7 +106,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -124,7 +124,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -142,7 +142,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -160,7 +160,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -178,7 +178,7 @@ const initialProducts: Product[] = [
         rating: 4.7, 
         reviews: 750, 
         status: "PROMO", 
-        image: "cafe/cafe_machine.jpg",
+        image: "/cafe/cafe_machine.jpg",
         category: "Eletta Explore",
         colors: 5,
         features: [
@@ -193,11 +193,41 @@ const initialProducts: Product[] = [
 export default function Promotion6() {
 
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
-    // const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
+    const [products, setProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data: Product[] = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                setError("Failed to load products.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
+
+    if (loading) {
+        return <div className="text-center py-12">Chargement des produits...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-12 text-red-500">{error}</div>;
+    }
     
       
     const listingProps = {
-        products: initialProducts,
+        products: products,
         defaultListingTitle: "Sortie", 
         title : null,
         subtitle: null,
@@ -212,7 +242,7 @@ export default function Promotion6() {
             <Hero 
                 title={<>Découvrez, cumulez et <br/> profitez d&apos;offres uniques </>}
                 subtitle="Avec nos offres allant jusqu'à 40%, c'est toujours le moment d'économiser"
-                videoUrl="promotions/video.webm"
+                videoUrl="/promotions/video.webm"
                 textColor='text-black' 
                 btnColor={customBlueButton}
                 
@@ -227,7 +257,7 @@ export default function Promotion6() {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-20 mt-10 px-4 lg:px-20 mb-10">
               
               <div className="w-full lg:w-1/2">
-                    <img src="promotions/promotion6.avif" alt="Machine à café en promotion" className="w-full h-auto object-cover rounded-lg shadow-md" /> 
+                    <Image src="/promotions/promotion6.avif" alt="Machine à café en promotion" width={800} height={600} className="w-full h-auto object-cover rounded-lg shadow-md" /> 
               </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-6 lg:pr-6">
@@ -272,7 +302,7 @@ export default function Promotion6() {
                 </div>
 
                 <div className="w-full lg:w-1/2">
-                    <img src="promotions/promotion6_1.avif" alt="Appareils de cuisine en promotion" className="w-full h-auto object-cover rounded-lg shadow-md" /> 
+                    <Image src="/promotions/promotion6_1.avif" alt="Appareils de cuisine en promotion" width={800} height={600} className="w-full h-auto object-cover rounded-lg shadow-md" /> 
                 </div>
 
             </section>
@@ -281,7 +311,7 @@ export default function Promotion6() {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-20 mt-10 px-4 lg:px-20 mb-20">
               
               <div className="w-full lg:w-1/2">
-                    <img src="promotions/promotion6_2.avif" alt="Bouilloires et grille-pain" className="w-full h-auto object-cover rounded-lg shadow-md" /> 
+                    <Image src="/promotions/promotion6_2.avif" alt="Bouilloires et grille-pain" width={800} height={600} className="w-full h-auto object-cover rounded-lg shadow-md" /> 
               </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-6 lg:pr-6">

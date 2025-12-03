@@ -2,6 +2,7 @@ import { IoIosArrowForward } from 'react-icons/io';
 import Hero from '@/components/Hero';
 import ProductCarousel from '@/components/ProductCarousel';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -14,7 +15,7 @@ export default function Home() {
     const customBlueButton = 'bg-[#266BBF] text-white hover:bg-[#8bb1e0]';
     const whiteButtonWithGrayText = 'bg-white text-gray-700 hover:bg-gray-300';
     const coffeeMachineStyle = {
-        backgroundImage: 'url("bg1.jpg")', 
+        backgroundImage: 'url("/bg1.jpg")', 
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -71,7 +72,7 @@ export default function Home() {
                     </div>
                     
                     <div className="w-full lg:w-1/2 relative bg-gray-200 flex items-center justify-center h-64 lg:h-auto">
-                        <img src="accessoires/access1.png" alt="" className="w-full h-full object-cover"/>
+                        <Image src="/accessoires/access1.png" alt="" layout="fill" className="w-full h-full object-cover"/>
                     </div>
                 </div>
             </section>
@@ -129,7 +130,7 @@ export default function Home() {
                     
                     <div className="relative h-[400px] lg:h-[550px] flex flex-col justify-end p-8 text-white overflow-hidden">
                         <div className="absolute inset-0">
-                            <img src="cafe/cafe_machine.jpg" alt="" className="w-full h-full object-cover"/>
+                            <Image src="/cafe/cafe_machine.jpg" alt="" layout="fill" className="w-full h-full object-cover"/>
                         </div>
                         <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
                         
@@ -146,7 +147,7 @@ export default function Home() {
 
                     <div className="relative h-[400px] lg:h-[550px] flex flex-col justify-end p-8 text-white overflow-hidden">
                         <div className="absolute inset-0">
-                            <img src="cafe/tasse_cafe.webp" alt="" className="w-full h-full object-cover"/>
+                            <Image src="/cafe/tasse_cafe.webp" alt="" layout="fill" className="w-full h-full object-cover"/>
                         </div>
                         <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
 
@@ -169,7 +170,7 @@ export default function Home() {
                     
                     <div className="relative h-[400px] lg:h-[550px] flex flex-col justify-end p-8 text-white overflow-hidden">
                         <div className="absolute inset-0">
-                            <img src="accessoires/access2.png" alt="" className="w-full h-full object-cover"/>
+                            <Image src="/accessoires/access2.png" alt="" layout="fill" className="w-full h-full object-cover"/>
                         </div>
                         <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
                         
@@ -186,7 +187,7 @@ export default function Home() {
 
                     <div className="relative h-[400px] lg:h-[550px] flex flex-col justify-end p-8 text-white overflow-hidden">
                         <div className="absolute inset-0">
-                            <img src="cafe/machine1.jpg" alt="" className="w-full h-full object-cover"/>
+                            <Image src="/cafe/machine1.jpg" alt="" layout="fill" className="w-full h-full object-cover"/>
                         </div>
                         <div className="absolute inset-0 bg-black opacity-30 z-1"></div>
 

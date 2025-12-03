@@ -61,7 +61,7 @@ export default function PromotionPage() {
                 </div>
 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/promo2.avif" alt="Promotion Halloween" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/promo2.avif" alt="Promotion Halloween" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
 
@@ -71,7 +71,7 @@ export default function PromotionPage() {
             <section className="w-full flex flex-col-reverse lg:flex-row gap-8 lg:gap-16 mt-16 lg:px-20">
 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/promo3.avif" alt="Promotion Coffee Club" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/promo3.avif" alt="Promotion Coffee Club" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-4 lg:pr-6">
@@ -113,7 +113,7 @@ export default function PromotionPage() {
                 </div>
 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/promo4.avif" alt="Produits reconditionnés" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/promo4.avif" alt="Produits reconditionnés" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
 
@@ -123,7 +123,7 @@ export default function PromotionPage() {
             <section className="w-full flex flex-col-reverse lg:flex-row gap-8 lg:gap-16 mt-16 lg:px-20 pb-20">
                 
                 <div className="w-full lg:w-1/2 flex items-center justify-center">
-                    <img src="cafe/promo5.avif" alt="Outlet De'Longhi" className="w-full h-auto object-cover" /> 
+                    <Image src="/cafe/promo5.avif" alt="Outlet De'Longhi" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
                 <div className="flex flex-col justify-center w-full lg:w-1/2 gap-4 lg:pr-6">

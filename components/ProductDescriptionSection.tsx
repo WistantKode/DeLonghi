@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react'; 
+import Image from 'next/image';
 import { FaStar, FaHeart, FaRegHeart, FaInfoCircle, FaShippingFast, FaUndo, FaShieldAlt } from 'react-icons/fa';
 import { IoIosArrowUp, IoIosArrowDown, IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import Link from 'next/link';
@@ -94,9 +95,11 @@ const ProductDescriptionSection = ({ product }: ProductDescriptionSectionProps) 
                                     key={index}
                                     className={`w-20 h-20 border p-1 cursor-pointer transition-all ${activeIndex === index ? 'border-gray-800' : 'border-gray-200 hover:border-gray-400'}`}
                                     onClick={() => setActiveIndex(index)} >
-                                    <img 
+                                    <Image 
                                         src={thumb} 
                                         alt={`Vignette ${index + 1}`} 
+                                        width={80}
+                                        height={80}
                                         className="w-full h-full object-contain"
                                     />
                                 </div>
@@ -109,9 +112,11 @@ const ProductDescriptionSection = ({ product }: ProductDescriptionSectionProps) 
                     </div>
                     
                     <div className="flex-1 relative mb-6 lg:mb-0 flex items-center justify-center p-4">
-                        <img 
+                        <Image 
                             src={product.images[activeIndex]} 
                             alt={product.name} 
+                            width={500}
+                            height={500}
                             className="w-full h-auto max-h-[500px] object-contain"
                         />
                         <button onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 p-2">
@@ -169,7 +174,7 @@ const ProductDescriptionSection = ({ product }: ProductDescriptionSectionProps) 
 
                     {product.klarna && (
                         <div className="p-2 mt-4 border border-gray-200 flex items-center gap-4 rounded-lg">
-                           <img src="/accessoires/klarna.png" alt="Logo Klarna" className="w-20"/>
+                           <Image src="/accessoires/klarna.png" alt="Logo Klarna" width={80} height={40} className="w-20"/>
                            <div className="">
                                 <p className="text-sm text-gray-800">
                                     3 paiements de <span className="font-bold">{product.klarna.payment} €</span> à <span className="font-bold">{product.klarna.interest}</span> d'intérêt avec <span className="font-bold">Klarna</span>

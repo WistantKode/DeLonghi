@@ -75,7 +75,7 @@ export default function DecouvrirCafe3() {
                 title={<>Votre univers café, prêt <br className="hidden md:block" /> à être exploré.</>}
                 subtitle={<>Ce n&apos;est pas seulement parfait. C&apos;est Perfetto. <br className="hidden lg:block"/>Eletta Explore est votre passeport pour une variété illimitée d&apos;expériences café. <br className="hidden lg:block" /> Maîtrisez plus de 40 recettes chaudes, froides et révolutionnaires de Cold <br className="hidden lg:block" />Brew, d&apos;une simple pression sur un bouton. Votre grand voyage au cœur du <br className="hidden lg:block" />café en grain commence chez vous.</>}
                 ctaText="Plongez dans un voyage au cœur des arômes"
-                videoUrl="cafe/video_cafe1.webm"
+                videoUrl="/cafe/video_cafe1.webm"
                 textColor='text-white' 
                 btnColor={whiteButtonWithGrayText}
                 btnWidth={btn}
@@ -94,7 +94,7 @@ export default function DecouvrirCafe3() {
                   
                   <div className="w-full max-w-4xl mt-5 mb-8 px-4 md:px-0">
                     <video autoPlay loop muted playsInline className="w-full">
-                        <source src="cafe/video_cafe4.webm" type="video/webm" /> 
+                        <source src="/cafe/video_cafe4.webm" type="video/webm" /> 
                     </video>
                   </div>
 
@@ -116,7 +116,7 @@ export default function DecouvrirCafe3() {
                   
                   <div className="w-full max-w-4xl mt-5 mb-8 px-4 md:px-0">
                     <video autoPlay loop muted playsInline className="w-full">
-                        <source src="cafe/video_cafe5.webm" type="video/webm" /> 
+                        <source src="/cafe/video_cafe5.webm" type="video/webm" /> 
                     </video>
                   </div>
 
@@ -139,7 +139,7 @@ export default function DecouvrirCafe3() {
                   
                   <div className="w-full max-w-4xl mt-5 mb-8 px-4 md:px-0">
                     <video autoPlay loop muted playsInline className="w-full">
-                        <source src="cafe/video_cafe6.webm" type="video/webm" /> 
+                        <source src="/cafe/video_cafe6.webm" type="video/webm" /> 
                     </video>
                   </div>
 
@@ -168,7 +168,7 @@ export default function DecouvrirCafe3() {
             <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 px-6 lg:px-24 gap-8 mb-12">
 
                 <div className="flex flex-col gap-4 text-center lg:text-left">
-                    <img src="cafe/decouvrir_cafe3.avif" alt="Bean Adapt" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3.avif" alt="Bean Adapt" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Savourez votre café Perfetto, du grain à la tasse
                     </h3>
@@ -179,7 +179,7 @@ export default function DecouvrirCafe3() {
                 </div>
 
                 <div className="flex flex-col gap-4 text-center lg:text-left">
-                    <img src="cafe/decouvrir_cafe3_1.avif" alt="To Go" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_1.avif" alt="To Go" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Préparez votre café à emporter
                     </h3>
@@ -190,7 +190,7 @@ export default function DecouvrirCafe3() {
                 </div>
 
                 <div className="flex flex-col gap-4 text-center lg:text-left">
-                    <img src="cafe/decouvrir_cafe3_2.avif" alt="Vegetal" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_2.avif" alt="Vegetal" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                        Savourez des boissons végétales parfaites
                     </h3>
@@ -201,7 +201,7 @@ export default function DecouvrirCafe3() {
                 </div>
 
                 <div className="flex flex-col gap-4 text-center lg:text-left">
-                    <img src="cafe/decouvrir_cafe3_3.avif" alt="Clean" className="w-full h-auto object-cover" />
+                    <Image src="/cafe/decouvrir_cafe3_3.avif" alt="Clean" width={400} height={300} className="w-full h-auto object-cover" />
                     <h3 className="font-medium text-xl text-[#0A2342]">
                         Une machine propre sans effort
                     </h3>

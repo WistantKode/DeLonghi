@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'; 
 import Hero from '@/components/Hero';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const DecouvrirCafe4 = () => {
 
@@ -25,31 +26,31 @@ const DecouvrirCafe4 = () => {
             tagline: "MOUTURE",
             title: "Une mouture précise et intelligente",
             subtitle: "La Specialista Touch comprend un moulin à café intégré qui permet d'obtenir une mouture parfaite selon le type de grain grâce aux 15 finesses de mouture et au guidage intuitif.",
-            imageSrc: "cafe/decouvrir_cafe4_2.avif" 
+            imageSrc: "/cafe/decouvrir_cafe4_2.avif" 
         },
         Tassage: {
             tagline: "TASSAGE",
             title: "Un tassage uniforme, sans désordre",
             subtitle: "Obtenez un tassage parfait sans effort ni résidu. La station de tassage intelligente Smart Tamping garantit un tassage uniforme et une pression idéale pour une extraction optimale.",
-            imageSrc: "cafe/decouvrir_cafe4_6.avif" 
+            imageSrc: "/cafe/decouvrir_cafe4_6.avif" 
         },
         Extraction: {
             tagline: "EXTRACTION",
             title: "Le contrôle absolu de l'extraction",
             subtitle: "Grâce au contrôle dynamique de la pré-infusion et au manomètre, vous avez le contrôle total du processus d'extraction pour révéler tous les arômes de votre espresso. Le guide visuel sur l'écran vous assure le résultat Perfetto.",
-            imageSrc: "cafe/decouvrir_cafe4_3.avif" 
+            imageSrc: "/cafe/decouvrir_cafe4_3.avif" 
         },
         Mousse: {
             tagline: "MOUSSE",
             title: "L'art du Latte Art en toute simplicité",
             subtitle: "La buse vapeur Auto LatteArt produit automatiquement une texture de lait soyeuse et parfaite, essentielle pour le Latte Art. Il suffit de sélectionner le niveau de mousse et de température souhaité.",
-            imageSrc: "cafe/decouvrir_cafe4_4.avif" 
+            imageSrc: "/cafe/decouvrir_cafe4_4.avif" 
         },
         Dégustation: {
             tagline: "DÉGUSTATION",
             title: "Le café Perfetto, chaud ou froid",
             subtitle: "Savourez votre création, qu'elle soit chaude ou froide. La Specialista Touch vous offre un menu complet pour satisfaire toutes les envies, du simple espresso au Cold Brew rafraîchissant.",
-            imageSrc: "cafe/decouvrir_cafe4_5.avif" 
+            imageSrc: "/cafe/decouvrir_cafe4_5.avif" 
         },
     };
 
@@ -76,7 +77,7 @@ const DecouvrirCafe4 = () => {
                 title={<>Bienvenue dans le <br /> meilleur café de la ville. <br /> Le vôtre.</>}
                 subtitle={<>Il n’est pas seulement parfait. Il est Perfetto. La Specialista Touch est votre  <br className="hidden lg:block"/> guide expert qui transformera votre cuisine en un véritable café artisanal. <br className="hidden lg:block"/> Maîtrisez le savoir-faire authentique grâce à des instructions intuitives à l’écran  <br className="hidden lg:block"/> et préparez un menu complet de boissons de qualité barista, que vous aurez  <br className="hidden lg:block"/> vous-même préparées à la perfection.</>}
                 ctaText="L'expérience café à la maison"
-                videoUrl="cafe/video_cafe1.webm"
+                videoUrl="/cafe/video_cafe1.webm"
                 textColor='text-black' 
                 btnColor={customBlueButton}
                 taglinecolor='text-gray-500'
@@ -87,7 +88,7 @@ const DecouvrirCafe4 = () => {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-30 mt-10 px-4 lg:px-0">
               
                <div className="w-full lg:w-[60%]">
-                     <img src="cafe/decouvrir_cafe4.avif" alt="Boissons chaudes et froides" className="w-full h-auto object-cover" /> 
+                     <Image src="/cafe/decouvrir_cafe4.avif" alt="Boissons chaudes et froides" width={800} height={600} className="w-full h-auto object-cover" /> 
                </div>
 
               <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 lg:pr-6 text-center lg:text-left">
@@ -109,7 +110,7 @@ const DecouvrirCafe4 = () => {
                 title={<>Tout le savoir-faire, sans <br /> hésitation.</>}
                 subtitle={<>Grâce à son écran tactile intuitif de 3,5 pouces, la tasse parfaite est à portée de  <br className="hidden lg:block"/> main. Il simplifie chaque décision, vous guidant dans la sélection de la mouture,  <br className="hidden lg:block"/> du dosage et de l’extraction. Obtenez des résultats exceptionnels grâce à un  <br className="hidden lg:block"/> processus pratique et satisfaisant, à la fois authentique et simple. </>}
                 ctaText="Achetez La Specialista Touch"
-                videoUrl="cafe/video_cafe7.webm"
+                videoUrl="/cafe/video_cafe7.webm"
                 textColor='text-black' 
                 btnColor={customBlueButton}
                 taglinecolor='text-gray-500'
@@ -122,7 +123,7 @@ const DecouvrirCafe4 = () => {
                <div className="w-full flex flex-col lg:flex-row px-4 lg:pl-10 mb-20 gap-10 lg:gap-30">
                     <div className="w-full lg:w-[60%]">
                         <video autoPlay loop muted playsInline className="w-full h-auto" >
-                            <source src="cafe/video_cafe8.webm" type="video/webm" /> 
+                            <source src="/cafe/video_cafe8.webm" type="video/webm" /> 
                         </video>
                     </div>
                     <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 lg:pr-20 text-center lg:text-left">
@@ -155,7 +156,7 @@ const DecouvrirCafe4 = () => {
 
                     <div className="w-full lg:w-[60%]">
                         <video autoPlay loop muted playsInline className="w-full h-auto" >
-                            <source src="cafe/video_cafe9.webm" type="video/webm" /> 
+                            <source src="/cafe/video_cafe9.webm" type="video/webm" /> 
                         </video>
                     </div>
                </div>
@@ -165,7 +166,7 @@ const DecouvrirCafe4 = () => {
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-30 mt-10 px-4 lg:px-0 pb-10">
               
               <div className="w-full lg:w-[60%]">
-                    <img src="cafe/decouvrir_cafe4_1.avif" alt="Design La Specialista" className="w-full h-auto object-cover " /> 
+                    <Image src="/cafe/decouvrir_cafe4_1.avif" alt="Design La Specialista" width={800} height={600} className="w-full h-auto object-cover " /> 
               </div>
 
              <div className="flex flex-col justify-center w-full lg:w-[40%] gap-4 lg:pr-6 text-center lg:text-left">

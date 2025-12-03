@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react'; 
+import Image from 'next/image';
 import ProductDescriptionSection from '@/components/ProductDescriptionSection'; 
 import { Product } from '@/types/product';
 
@@ -61,7 +62,7 @@ export default function DecouvrirAccessoires6() {
                 </div>
 
                 <div className="w-full lg:w-1/2 flex justify-center">
-                        <img src="/accessoires/decouvrir6_5.avif" alt="" className="w-full h-auto object-cover" /> 
+                        <Image src="/accessoires/decouvrir6_5.avif" alt="" width={800} height={600} className="w-full h-auto object-cover" /> 
                 </div>
 
             </section>

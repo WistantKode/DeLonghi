@@ -22,7 +22,7 @@ const Choose: React.FC = () => {
       id: 'barista',
       title: "C'est un moment barista",
       description: "J'aime préparer mon café étape par étape, vivre l'expérience du Barista à la maison.",
-      image: "cafe/aide1.avif", 
+      image: "/cafe/aide1.avif", 
       route: "/machines_expresso" // Updated route to match Next.js structure if needed, original was /machines-manuelles but likely mapped to machines_expresso in my migration?
       // Wait, let me check the original routes mapping.
       // machines-manuelles -> machines_expresso (based on previous migrations, let's verify)
@@ -32,7 +32,7 @@ const Choose: React.FC = () => {
       id: 'simple',
       title: "D'une simple touche",
       description: "La machine à café prépare le café parfait pour moi. Je le déguste, et je recommence.",
-      image: "cafe/aide2.avif", 
+      image: "/cafe/aide2.avif", 
       route: "/expresso_broyeurs" // Updated route
     }
   ];
@@ -95,9 +95,10 @@ const Choose: React.FC = () => {
               
               {/* mobile (w-20) et desktop (sm:w-32) */}
               <div className="flex-shrink-0 w-20 h-20 sm:w-32 sm:h-32 mr-4 sm:mr-6 overflow-hidden bg-gray-100 relative">
-                <img 
+                <Image 
                   src={option.image} 
                   alt="" 
+                  layout="fill"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                 />
               </div>
