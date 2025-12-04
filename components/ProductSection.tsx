@@ -64,8 +64,8 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
                 </button>
                 
                 {/* Image produit */}
-                <div className="relative h-48 bg-gray-100 flex items-center justify-center">
-                    <Image src={product.image} alt={product.name} width={200} height={200} className="max-h-44 object-contain transition-transform duration-300 group-hover:scale-105" />
+                <div className="relative h-52 bg-gray-50 flex items-center justify-center">
+                    <Image src={product.image} alt={product.name} width={220} height={220} className="max-h-48 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
                 </div>
             </div>
 
@@ -75,36 +75,36 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
             </div>
             
             {/* Détails du produit */}
-            <div className="p-5 pt-4">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+            <div className="p-5 pt-5">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     {product.series} {/* Changed from product.category to product.series */}
                 </p>
 
-                <div className="flex justify-between items-start">
-                    <h3 className="text-lg font-serif font-semibold text-gray-900 mb-3 leading-tight pr-4">
+                <div className="flex justify-between items-start gap-3">
+                    <h3 className="text-lg font-serif font-semibold text-gray-900 leading-tight flex-1 min-h-[3.5rem]">
                         {product.name}
                     </h3>
                     
                     {/* Prix */}
-                    <div className="text-right">
-                        <p className="text-xl text-gray-900 leading-none">{product.price}</p>
+                    <div className="text-right flex-shrink-0">
+                        <p className="text-xl font-bold text-gray-900 leading-none">{product.price}</p>
                         {product.oldPrice && (
                             <p className="text-sm text-gray-500 line-through mt-1">{product.oldPrice}</p>
                         )}
                         {product.oldPrice && (
-                            <p className="text-xs text-gray-500 mt-1">(Prix suggéré)</p>
+                            <p className="text-xs text-gray-400 mt-0.5">(Prix suggéré)</p>
                         )}
                     </div>
                 </div>
             
                 {/* Notation & Comparer */}
-                <div className="flex items-center justify-between gap-4 mt-2">
-                    <div className="flex items-center">
+                <div className="flex items-center justify-between gap-4 mt-4 pt-3 border-t border-gray-100">
+                    <div className="flex items-center gap-2">
                         <StarRating rating={product.rating} />
-                        <span className="text-sm  font-semibold text-gray-900 ml-2 mr-1">
+                        <span className="text-sm font-semibold text-gray-900">
                             {product.rating}
                         </span>
-                        <span className="text-sm text-gray-500">({product.reviews} avis)</span>
+                        <span className="text-sm text-gray-500">({product.reviews})</span>
                     </div>
 
                     <label className="flex items-center text-gray-600 cursor-pointer text-sm font-medium hover:text-[#266BBF] transition-colors">
@@ -119,9 +119,9 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
                 </div>
                 
                 {product.colors && product.colors > 1 && (
-                    <div className="pt-4">
-                        <a href="#" className="text-gray-500 hover:text-[#266BBF] text-xs font-medium transition-colors">
-                            {product.colors} autres couleurs
+                    <div className="pt-3">
+                        <a href="#" className="text-gray-600 hover:text-[#266BBF] text-xs font-medium transition-colors underline">
+                            +{product.colors} couleur{product.colors > 1 ? 's' : ''}
                         </a>
                     </div>
                 )}
