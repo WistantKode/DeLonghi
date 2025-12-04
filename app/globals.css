@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
-  --font-family-serif: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  /* Override Tailwind's default font families to use Outfit everywhere */
+  --font-family-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-family-serif: "Outfit", ui-sans-serif, system-ui, sans-serif;
 }
 
 * {
@@ -13,5 +14,10 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: "Outfit", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Outfit', sans-serif !important;
+}
+
+/* Force Outfit on all text elements */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, label, div {
+  font-family: "Outfit", sans-serif !important;
 }
