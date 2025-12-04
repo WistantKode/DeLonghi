@@ -24,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={outfit.variable}>
-      <body className="antialiased">
+      <body className={`antialiased ${outfit.className}`}>
         <div className="flex flex-col min-h-screen">
           <Header />
           <main className="flex-grow mt-40">
