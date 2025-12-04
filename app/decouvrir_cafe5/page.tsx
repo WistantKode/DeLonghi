@@ -3,14 +3,12 @@ import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getProducts } from '@/lib/getProducts'; // Import Product interface
+import { Product } from '@/types/product';
 import InteractiveYoutubePlayer from '@/components/shared/InteractiveYoutubePlayer'; // Import the new Client Component
 
 async function getPrimaDonnaAromaticProducts(): Promise<Product[]> {
-    const res = await fetch('http://localhost:3000/api/products?series=PrimaDonna Aromatic');
-    if (!res.ok) {
-        throw new Error('Failed to fetch PrimaDonna Aromatic products');
-    }
-    return res.json();
+    const products = await getProducts({ type: 'expresso-broyeur', series: 'PrimaDonna Aromatic' });
+    return products;
 }
 
 export default async function DecouvrirCafe5() {

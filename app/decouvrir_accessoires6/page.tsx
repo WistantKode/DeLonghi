@@ -2,28 +2,21 @@ import React from 'react';
 import Image from 'next/image';
 import ProductDescriptionSection from '@/components/ProductDescriptionSection'; 
 import { getProducts } from '@/lib/getProducts';
+import { Product } from '@/types/product';
 
-async function getProduct(): Promise<Product | null> {
-    const res = await fetch('http://localhost:3000/api/products?type=accessoire&series=La Specialista');
-    if (!res.ok) {
-        console.error('Failed to fetch product');
-        return null;
-    }
-    const products: Product[] = await res.json();
-    return products.length > 0 ? products[0] : null; // Return the first product found
-}
 
 export default async function DecouvrirAccessoires6() {
-    const productData = await getProduct();
+    const products = await getProducts({ type: 'accessoire', series: 'La Specialista' });
+    const product = products[0] || null;
 
-    if (!productData) {
+    if (!product) {
         return <div className="text-center py-12">Produit non trouvé.</div>;
     }
     
     return (
         <div className="font-sans antialiased text-gray-800 bg-white mt-24 lg:mt-40 overflow-x-hidden">
             
-            <ProductDescriptionSection product={productData} />
+            <ProductDescriptionSection product={product} />
             
             {/* Modif: Flex-col sur mobile, row sur desktop. Suppression des largeurs vw fixes */}
             <section className="w-full flex flex-col lg:flex-row gap-10 px-6 lg:px-20 mt-20 mb-20">

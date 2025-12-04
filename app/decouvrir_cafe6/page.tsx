@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection'; 
 import { getProducts } from '@/lib/getProducts';
+import { Product } from '@/types/product';
 
 
 export default async function DecouvrirCafe6() {

@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getProducts } from '@/lib/getProducts'; // Import Product interface
+import { Product } from '@/types/product';
 
 interface ProductCardProps {
     product: Product; // Now accepts a Product object
@@ -57,15 +58,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isLarge = false, hid
 };
 
 async function getRefurbishedProducts(): Promise<Product[]> {
-    // Assuming "reconditionné" is a status or a specific type for refurbished products
-    // For now, we'll fetch all and filter by status if available, or just use a subset.
-    const res = await fetch('http://localhost:3000/api/products'); // Fetch all products
-    if (!res.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    const allProducts: Product[] = await res.json();
-    // Filter for products that might be considered "refurbished" based on status or other criteria
-    // This is a placeholder logic, adjust based on actual data structure for refurbished items
+    const allProducts = await getProducts();
     return allProducts.filter(p => p.status === "RECONDITIONNÉ" || p.name.includes("Reconditionné"));
 }
 

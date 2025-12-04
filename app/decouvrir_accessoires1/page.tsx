@@ -1,29 +1,21 @@
-import React from 'react'; 
+import React from 'react';
 import Image from 'next/image';
-import ProductDescriptionSection from '@/components/ProductDescriptionSection'; 
+import ProductDescriptionSection from '@/components/ProductDescriptionSection';
 import { getProducts } from '@/lib/getProducts';
-
-async function getProduct(): Promise<Product | null> {
-    const res = await fetch('http://localhost:3000/api/products?type=accessoire&series=LatteCrema Cool');
-    if (!res.ok) {
-        console.error('Failed to fetch product');
-        return null;
-    }
-    const products: Product[] = await res.json();
-    return products.length > 0 ? products[0] : null; // Return the first product found
-}
+import { Product } from '@/types/product';
 
 export default async function DecouvrirAccessoires1() {
-    const productData = await getProduct();
+    const products = await getProducts({ type: 'accessoire', series: 'LatteCrema Cool' });
+    const product = products[0] || null;
 
-    if (!productData) {
+    if (!product) {
         return <div className="text-center py-12">Produit non trouvé.</div>;
     }
     
     return (
         <div className="font-sans antialiased text-gray-800 bg-white mt-24 lg:mt-40 overflow-x-hidden">
             
-            <ProductDescriptionSection product={productData} />
+            <ProductDescriptionSection product={product} />
 
             {/* SECTION 1 : TEXTE GAUCHE / IMAGE DROITE */}
             <section className="w-full flex flex-col lg:flex-row gap-10 lg:gap-24 mt-12 lg:mt-20 px-4 lg:px-24">

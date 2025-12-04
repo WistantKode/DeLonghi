@@ -3,6 +3,7 @@ import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getProducts } from '@/lib/getProducts'; // Import Product interface
+import { Product } from '@/types/product';
 import InteractiveYoutubePlayer from '@/components/shared/InteractiveYoutubePlayer'; // Import the new Client Component
 
 interface MachineCardProps {
