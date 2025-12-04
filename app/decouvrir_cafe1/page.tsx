@@ -5,7 +5,7 @@ import { FaPlayCircle, FaRegCopy, FaYoutube} from "react-icons/fa";
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/types/product'; // Import Product interface
+import { getProducts } from '@/lib/getProducts'; // Import Product interface
 
 // Fonction de simulation pour copier le lien
 const handleCopyLink = (url: string) => {
@@ -59,13 +59,6 @@ const MachineCard: React.FC<MachineCardProps> = ({ product, ctaText }) => {
     );
 };
 
-async function getProducts(): Promise<Product[]> {
-    const res = await fetch('http://localhost:3000/api/products'); // Fetch all products for now
-    if (!res.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    return res.json();
-}
 
 export default async function DecouvrirCafe1() {
 

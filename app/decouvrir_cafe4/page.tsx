@@ -4,8 +4,7 @@ import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
 import InteractiveTabSlider from '@/components/shared/InteractiveTabSlider'; // Import the new Client Component
-
-type TabName = 'Mouture' | 'Tassage' | 'Extraction' | 'Mousse' | 'Dégustation';
+import { TabName, TabData } from '@/types/tab'; // NEW: Import TabName and TabData from shared types
 
 export default function DecouvrirCafe4() {
 

@@ -3,15 +3,8 @@ import ProductSection from '@/components/ProductSection';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/types/product';
+import { getProducts } from '@/lib/getProducts';
 
-async function getProducts(): Promise<Product[]> {
-    const res = await fetch('http://localhost:3000/api/products?type=cafe'); // Filter by type=cafe
-    if (!res.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    return res.json();
-}
 
 export default async function Promotion6() {
     const products = await getProducts();

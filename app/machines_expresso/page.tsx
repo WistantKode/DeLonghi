@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection';
-import { Product } from '@/types/product';
+import { getProducts } from '@/lib/getProducts';
 
 interface ContentBlockProps {
     title: string;
@@ -52,13 +52,6 @@ const contentBlocks = [
     },
 ];
 
-async function getProducts(): Promise<Product[]> {
-    const res = await fetch('http://localhost:3000/api/products?type=machine-expresso-manuelle');
-    if (!res.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    return res.json();
-}
 
 export default async function MachinesExpresso() {
     const products = await getProducts();

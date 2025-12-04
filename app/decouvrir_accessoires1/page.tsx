@@ -1,41 +1,24 @@
-'use client';
-
 import React from 'react'; 
 import Image from 'next/image';
 import ProductDescriptionSection from '@/components/ProductDescriptionSection'; 
-import { Product } from '@/types/product';
+import { getProducts } from '@/lib/getProducts';
 
-const productData: Product = {
-    id: 1,
-    name: "LatteCrema Cool upgrade Set",
-    subtitle: "Pichets à lait automatiques",
-    rating: 4.8,
-    reviews: 72,
-    reference: "DLSC032",
-    color: "Non spécifié",
-    price: "99,90",
-    taxInfo: "TVA incluse",
-    klarna: {
-        payment: "33,30",
-        interest: "0 %",
-        link: "#"
-    },
-    
-    images: [
-        "/accessoires/decouvrir1.avif",
-        "/accessoires/decouvrir1_1.avif",
-        "/accessoires/decouvrir1_2.avif",
-        "/accessoires/decouvrir1_3.avif",
-        "/accessoires/decouvrir1_4.avif",
-        "/accessoires/decouvrir1_4.avif",
-        "/accessoires/decouvrir1_5.avif",
-    ],
-    status: "",
-    image: "",
-    category: ""
-};
+async function getProduct(): Promise<Product | null> {
+    const res = await fetch('http://localhost:3000/api/products?type=accessoire&series=LatteCrema Cool');
+    if (!res.ok) {
+        console.error('Failed to fetch product');
+        return null;
+    }
+    const products: Product[] = await res.json();
+    return products.length > 0 ? products[0] : null; // Return the first product found
+}
 
-export default function DecouvrirAccessoires1() {
+export default async function DecouvrirAccessoires1() {
+    const productData = await getProduct();
+
+    if (!productData) {
+        return <div className="text-center py-12">Produit non trouvé.</div>;
+    }
     
     return (
         <div className="font-sans antialiased text-gray-800 bg-white mt-24 lg:mt-40 overflow-x-hidden">

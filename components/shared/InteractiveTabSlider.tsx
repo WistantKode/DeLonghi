@@ -3,15 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-
-type TabName = 'Mouture' | 'Tassage' | 'Extraction' | 'Mousse' | 'Dégustation';
-
-interface TabData {
-    tagline: string;
-    title: string;
-    subtitle: string;
-    imageSrc: string;
-}
+import { TabName, TabData } from '@/types/tab'; // NEW: Import TabName and TabData from shared types
 
 interface InteractiveTabSliderProps {
     tabsData: Record<TabName, TabData>;

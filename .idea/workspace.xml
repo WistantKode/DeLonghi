@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5b347190-125c-42a5-8d38-41ed42ecfa7a" name="Changes" comment="refactor(header): Démanteler le composant Header en une architecture modulaire&#10;&#10;Ce commit refactorise en profondeur le composant `Header.tsx` qui était devenu un &quot;God Component&quot; complexe et difficile à maintenir.&#10;&#10;La logique a été décomposée en plusieurs composants spécialisés et organisés dans le dossier `components/layout/header/` :&#10;&#10;-   **`DesktopNav.tsx`** : Gère exclusivement la barre de navigation et les méga-menus pour les écrans larges.&#10;-   **`MobileNav.tsx`** : Encapsule toute la logique du menu hamburger et du panneau de navigation mobile.&#10;-   **`Header.tsx`** (simplifié) : Sert désormais de point d'entrée qui assemble les différentes parties de l'en-tête.&#10;&#10;Cette refactorisation améliore considérablement la lisibilité, la maintenabilité et la séparation des préoccupations, tout en ouvrant la voie à de futures optimisations de performance.">
+      <change afterPath="$PROJECT_DIR$/app/api/products/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/FAQItem.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/InteractiveTabSlider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/shared/InteractiveYoutubePlayer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/cafe/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/cafe/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe1/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe1/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe2/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe2/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe3/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe3/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe4/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe4/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe5/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe5/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/decouvrir_cafe6/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/decouvrir_cafe6/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/expresso_broyeurs/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/expresso_broyeurs/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/machines_expresso/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/machines_expresso/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/perfetto_challenge/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/perfetto_challenge/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/promotion6/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/promotion6/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/refurbished/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/refurbished/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Hero.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Hero.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ProductCarousel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ProductCarousel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ProductSection.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ProductSection.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/product.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="test" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "WistantKode"
+  }
+}]]></component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1764788958" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="test" />
+                    <option name="lastUsedInstant" value="1764785919" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1764783801" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:WistantKode/Delonghi.git",
+    "accountId": "31eccfe8-470c-4b10-99cb-f8c1349e9c5f"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="36LPbzdM8SRRBB5kvFMVPJgrHAm" />
+  <component name="ProjectViewState">
+    <option name="compactDirectories" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.localhost:3000.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;js.debugger.nextJs.config.created.client&quot;: &quot;true&quot;,
+    &quot;js.debugger.nextJs.config.created.server&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.stylelint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.stylelint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/kali-root/Dev/Works/Delonghi/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="ReactDesignerToolWindowState">
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.intellij.reactbuddy.reactComponents" value="false" />
+        <entry key="com.intellij.reactbuddy.reactInspector" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.Next.js: server-side">
+    <configuration name="Next.js: debug client-side" type="JavascriptDebugType" uri="http://localhost:3000/">
+      <method v="2" />
+    </configuration>
+    <configuration name="localhost:3000" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="Next.js: server-side" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.localhost:3000" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-WS-252.26199.162" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5b347190-125c-42a5-8d38-41ed42ecfa7a" name="Changes" comment="" />
+      <created>1764782955997</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1764782955997</updated>
+      <workItem from="1764782958346" duration="9813000" />
+      <workItem from="1764793173131" duration="3365000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat: Centralisation des données et optimisation des images&#10;&#10;Ce commit introduit deux améliorations majeures :&#10;&#10;1.  **API pour les produits :**&#10;    *   Création d'une route d'API (`/api/products`) pour centraliser les données des produits qui étaient auparavant codées en dur dans les pages.&#10;    *   Refactorisation des pages (ex: `expresso_broyeurs`) pour récupérer les données depuis cette nouvelle API, avec gestion des états de chargement et d'erreur.&#10;&#10;2.  **Optimisation des images :**&#10;    *   Remplacement systématique de toutes les balises `&lt;img&gt;` par le composant `&lt;Image&gt;` de Next.js à travers l'ensemble du projet.&#10;    *   Cette modification tire parti de l'optimisation d'images intégrée à Next.js (lazy loading, redimensionnement, formats modernes) pour améliorer significativement les performances de chargement et les Core Web Vitals.">
+      <option name="closed" value="true" />
+      <created>1764787734202</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1764787734202</updated>
+    </task>
+    <task id="LOCAL-00002" summary="security(deps): Upgrade Next.js et React pour corriger une vulnérabilité critique&#10;&#10;Ce commit met à jour les dépendances `next`, `react` et `react-dom` vers leurs versions corrigées pour remédier à la vulnérabilité critique CVE-2025-55182.&#10;&#10;Cette faille de sécurité, présente dans les React Server Components, permettait une exécution de code à distance (RCE) via des requêtes spécialement conçues.&#10;&#10;Mises à jour effectuées :&#10;- next: 16.0.6 → 16.0.7&#10;- react: 19.2.0 → 19.2.1&#10;- react-dom: 19.2.0 → 19.2.1&#10;&#10;Cette mise à jour est essentielle pour sécuriser l'application.">
+      <option name="closed" value="true" />
+      <created>1764788736455</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1764788736455</updated>
+    </task>
+    <task id="LOCAL-00003" summary="refactor(header): Démanteler le composant Header en une architecture modulaire&#10;&#10;Ce commit refactorise en profondeur le composant `Header.tsx` qui était devenu un &quot;God Component&quot; complexe et difficile à maintenir.&#10;&#10;La logique a été décomposée en plusieurs composants spécialisés et organisés dans le dossier `components/layout/header/` :&#10;&#10;-   **`DesktopNav.tsx`** : Gère exclusivement la barre de navigation et les méga-menus pour les écrans larges.&#10;-   **`MobileNav.tsx`** : Encapsule toute la logique du menu hamburger et du panneau de navigation mobile.&#10;-   **`Header.tsx`** (simplifié) : Sert désormais de point d'entrée qui assemble les différentes parties de l'en-tête.&#10;&#10;Cette refactorisation améliore considérablement la lisibilité, la maintenabilité et la séparation des préoccupations, tout en ouvrant la voie à de futures optimisations de performance.">
+      <option name="closed" value="true" />
+      <created>1764790163493</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764790163493</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Centralisation des données et optimisation des images&#10;&#10;Ce commit introduit deux améliorations majeures :&#10;&#10;1.  **API pour les produits :**&#10;    *   Création d'une route d'API (`/api/products`) pour centraliser les données des produits qui étaient auparavant codées en dur dans les pages.&#10;    *   Refactorisation des pages (ex: `expresso_broyeurs`) pour récupérer les données depuis cette nouvelle API, avec gestion des états de chargement et d'erreur.&#10;&#10;2.  **Optimisation des images :**&#10;    *   Remplacement systématique de toutes les balises `&lt;img&gt;` par le composant `&lt;Image&gt;` de Next.js à travers l'ensemble du projet.&#10;    *   Cette modification tire parti de l'optimisation d'images intégrée à Next.js (lazy loading, redimensionnement, formats modernes) pour améliorer significativement les performances de chargement et les Core Web Vitals." />
+    <MESSAGE value="security(deps): Upgrade Next.js et React pour corriger une vulnérabilité critique&#10;&#10;Ce commit met à jour les dépendances `next`, `react` et `react-dom` vers leurs versions corrigées pour remédier à la vulnérabilité critique CVE-2025-55182.&#10;&#10;Cette faille de sécurité, présente dans les React Server Components, permettait une exécution de code à distance (RCE) via des requêtes spécialement conçues.&#10;&#10;Mises à jour effectuées :&#10;- next: 16.0.6 → 16.0.7&#10;- react: 19.2.0 → 19.2.1&#10;- react-dom: 19.2.0 → 19.2.1&#10;&#10;Cette mise à jour est essentielle pour sécuriser l'application." />
+    <MESSAGE value="refactor(header): Démanteler le composant Header en une architecture modulaire&#10;&#10;Ce commit refactorise en profondeur le composant `Header.tsx` qui était devenu un &quot;God Component&quot; complexe et difficile à maintenir.&#10;&#10;La logique a été décomposée en plusieurs composants spécialisés et organisés dans le dossier `components/layout/header/` :&#10;&#10;-   **`DesktopNav.tsx`** : Gère exclusivement la barre de navigation et les méga-menus pour les écrans larges.&#10;-   **`MobileNav.tsx`** : Encapsule toute la logique du menu hamburger et du panneau de navigation mobile.&#10;-   **`Header.tsx`** (simplifié) : Sert désormais de point d'entrée qui assemble les différentes parties de l'en-tête.&#10;&#10;Cette refactorisation améliore considérablement la lisibilité, la maintenabilité et la séparation des préoccupations, tout en ouvrant la voie à de futures optimisations de performance." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor(header): Démanteler le composant Header en une architecture modulaire&#10;&#10;Ce commit refactorise en profondeur le composant `Header.tsx` qui était devenu un &quot;God Component&quot; complexe et difficile à maintenir.&#10;&#10;La logique a été décomposée en plusieurs composants spécialisés et organisés dans le dossier `components/layout/header/` :&#10;&#10;-   **`DesktopNav.tsx`** : Gère exclusivement la barre de navigation et les méga-menus pour les écrans larges.&#10;-   **`MobileNav.tsx`** : Encapsule toute la logique du menu hamburger et du panneau de navigation mobile.&#10;-   **`Header.tsx`** (simplifié) : Sert désormais de point d'entrée qui assemble les différentes parties de l'en-tête.&#10;&#10;Cette refactorisation améliore considérablement la lisibilité, la maintenabilité et la séparation des préoccupations, tout en ouvrant la voie à de futures optimisations de performance." />
+  </component>
+</project>

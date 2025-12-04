@@ -1,15 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import ProductSection from '@/components/ProductSection'; 
-import { Product } from '@/types/product';
+import { getProducts } from '@/lib/getProducts';
 
-async function getProducts(): Promise<Product[]> {
-    const res = await fetch('http://localhost:3000/api/products?type=cafe');
-    if (!res.ok) {
-        throw new Error('Failed to fetch products');
-    }
-    return res.json();
-}
 
 export default async function DecouvrirCafe6() {
     const products = await getProducts();

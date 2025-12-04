@@ -6,6 +6,7 @@ export type ProductCategory =
   'machine-expresso-manuelle' | 
   'machine-capsule' | 
   'accessoire' | 
+  'accessoire-cafe' | 
   'appareil-confort' | 
   'appareil-cuisine' | 
   'bouilloire-grille-pain' |
@@ -21,7 +22,7 @@ export interface Product {
   id: number;
   name: string;
   price: string;
-  oldPrice?: string;
+  oldPrice?: string | null; 
   rating: number;
   reviews: number;
   status: string;
@@ -39,6 +40,7 @@ export interface Product {
   reference?: string; // For ProductDescriptionSection
   taxInfo?: string; // For ProductDescriptionSection
   klarna?: KlarnaInfo; // For ProductDescriptionSection
+  link?: string; // NEW: Added link property
 }
 
 export interface ProductSectionProps {

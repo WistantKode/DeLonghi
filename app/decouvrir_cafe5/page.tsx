@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/types/product'; // Import Product interface
+import { getProducts } from '@/lib/getProducts'; // Import Product interface
 import InteractiveYoutubePlayer from '@/components/shared/InteractiveYoutubePlayer'; // Import the new Client Component
 
 async function getPrimaDonnaAromaticProducts(): Promise<Product[]> {

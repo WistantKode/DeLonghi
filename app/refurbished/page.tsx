@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from '@/components/Hero';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Product } from '@/types/product'; // Import Product interface
+import { getProducts } from '@/lib/getProducts'; // Import Product interface
 
 interface ProductCardProps {
     product: Product; // Now accepts a Product object
