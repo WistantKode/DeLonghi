@@ -39,13 +39,13 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
 
     const statusBadges = [];
     if (product.status.includes('WEB')) {
-        statusBadges.push(<span key="web" className="bg-[#C9E3F9] text-black px-3 py-1.5 text-xs font-semibold inline-block">COLD BREW</span>);
+        statusBadges.push(<span key="web" className="bg-[#C9E3F9] text-black px-2.5 py-1 text-xs font-medium inline-block rounded">COLD BREW</span>);
     }
     if (product.status.includes('PROMO')) {
-        statusBadges.push(<span key="promo" className="bg-[#C9E3F9] text-black px-3 py-1.5 text-xs font-semibold inline-block">PROMO</span>);
+        statusBadges.push(<span key="promo" className="bg-[#C9E3F9] text-black px-2.5 py-1 text-xs font-medium inline-block rounded">PROMO</span>);
     }
     if (product.status.includes('stock')) {
-        statusBadges.push(<span key="stock" className="bg-[#C9E3F9] text-black px-3 py-1.5 text-xs font-semibold inline-block">RUPTURE DE STOCK</span>);
+        statusBadges.push(<span key="stock" className="bg-[#C9E3F9] text-black px-2.5 py-1 text-xs font-medium inline-block rounded">RUPTURE DE STOCK</span>);
     }
 
     // Nom du produit encodé pour l'URL
@@ -53,8 +53,8 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
 
     return (
         <div 
-            className="shadow-md hover:shadow-xl overflow-hidden group border border-transparent hover:border-gray-300 relative transition-shadow duration-300 ease-in-out" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            <div className="relative p-6 pb-0">
+            className="shadow-sm hover:shadow-lg overflow-hidden group border border-transparent hover:border-gray-200 relative transition-all duration-300 ease-in-out" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+            <div className="relative p-5 pb-0">
                 <button onClick={() => onToggleFavorite(product.id)} className="absolute top-6 right-6 p-2 transition-all duration-200 hover:scale-110 cursor-pointer z-8">
                     {isFavorite ? (
                         <FaHeart className="w-5 h-5 text-[#0A2342]" />
@@ -70,18 +70,18 @@ const ProductCard = ({ product, isFavorite, isComparing, onToggleFavorite, onTog
             </div>
 
             {/* Badges */}
-            <div className="absolute flex flex-wrap gap-2 -mt-7 px-6 ">
+            <div className="absolute flex flex-wrap gap-2 -mt-7 px-5 ">
                 {statusBadges}
             </div>
             
             {/* Détails du produit */}
-            <div className="p-6 pt-4">
+            <div className="p-5 pt-4">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
                     {product.series} {/* Changed from product.category to product.series */}
                 </p>
 
                 <div className="flex justify-between items-start">
-                    <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-tight pr-4">
+                    <h3 className="text-lg font-serif font-semibold text-gray-900 mb-3 leading-tight pr-4">
                         {product.name}
                     </h3>
                     

@@ -1,8 +1,16 @@
 import type { Metadata } from "next";
+import { Outfit } from 'next/font/google';
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import React from "react";
+
+const outfit = Outfit({ 
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: "De'Longhi France | Machines à café, Appareils électroménagers",
@@ -15,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={outfit.variable}>
       <body className="antialiased">
         <div className="flex flex-col min-h-screen">
           <Header />

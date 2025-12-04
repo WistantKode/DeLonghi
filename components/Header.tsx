@@ -24,14 +24,14 @@ const Header = () => {
             </div>
 
             <div className="bg-white border-b border-gray-200">
-                <nav className="flex justify-between items-center px-6 h-16 lg:h-auto">
+                <nav className="flex justify-between items-center px-6 h-20 lg:h-24">
 
                     <MobileNav/>
 
                     {/* Logo */}
                     <Link href="/" className="lg:px-10">
                         <Image src="/delonghi_logo.png" alt="De'Longhi Logo" width={200} height={80}
-                               className="h-10 lg:h-32"/>
+                               className="h-10 lg:h-12"/>
                     </Link>
 
                     <DesktopNav/>
